@@ -10,6 +10,8 @@ const Navbar = () => {
     { name: 'Naves', path: '/naves' },
     { name: 'Especies', path: '/especies' },
     { name: 'Vehículos', path: '/vehiculos' },
+    { name: 'Armas', path: '/armas' },
+    { name: 'Eventos', path: '/eventos' },
     { name: 'Facciones', path: '/facciones' },
   ];
 

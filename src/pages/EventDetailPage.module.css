@@ -1,0 +1,83 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.backBtn {
+  margin-bottom: var(--space-xl);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-xxl);
+}
+
+.episodeNumber {
+  color: var(--color-accent-gold);
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  letter-spacing: 0.3em;
+  margin-bottom: var(--space-sm);
+}
+
+.title {
+  font-size: 3rem;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-md);
+}
+
+.meta {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xl);
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.crawlSection {
+  margin-bottom: var(--space-xxl);
+}
+
+.relationsSection {
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  padding: var(--space-xl);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-xl);
+  overflow-x: auto;
+  padding-bottom: var(--space-sm);
+}
+
+.tab {
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  padding: var(--space-sm) var(--space-md);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  color: var(--color-accent-blue);
+}
+
+.activeTab {
+  color: var(--color-accent-gold);
+  border-bottom: 2px solid var(--color-accent-gold);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-lg);
+}

@@ -1,11 +1,9 @@
 import React from 'react';
+import EntityListPage from '../components/layout/EntityListPage';
+import { vehiclesConfig } from '../api/vehicles';
 
 const VehiclesPage = () => {
-  return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
-      <h1>Vehículos</h1>
-    </div>
-  );
+  return <EntityListPage config={vehiclesConfig.list} />;
 };
 
 export default VehiclesPage;
