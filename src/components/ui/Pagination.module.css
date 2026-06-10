@@ -1,0 +1,18 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xl);
+  margin-top: var(--space-xxl);
+}
+
+.info {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.currentPage {
+  color: var(--color-accent-gold);
+  font-weight: 700;
+}

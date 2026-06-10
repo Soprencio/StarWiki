@@ -1,0 +1,39 @@
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #0f1117 25%,
+    #1e2535 50%,
+    #0f1117 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.card {
+  height: 380px;
+  width: 100%;
+}
+
+.text {
+  height: 1rem;
+  width: 100%;
+  margin-bottom: var(--space-sm);
+}
+
+.detail {
+  height: 400px;
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-xl);
+  width: 100%;
+}

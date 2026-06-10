@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HoloNet Archives - Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed": "#ffdad6",
+                        "secondary-fixed-dim": "#75d1ff",
+                        "on-primary-container": "#503d00",
+                        "on-secondary-fixed-variant": "#004d67",
+                        "tertiary-container": "#ff8a80",
+                        "background": "#16130d",
+                        "on-primary": "#3d2e00",
+                        "on-tertiary-container": "#86000c",
+                        "inverse-on-surface": "#343029",
+                        "on-tertiary-fixed-variant": "#93000e",
+                        "inverse-surface": "#e9e1d7",
+                        "surface-container-lowest": "#100e08",
+                        "on-primary-fixed": "#241a00",
+                        "surface-container-highest": "#38342d",
+                        "inverse-primary": "#755b00",
+                        "on-surface": "#e9e1d7",
+                        "surface-container": "#221f19",
+                        "primary": "#e6c364",
+                        "primary-container": "#c9a84c",
+                        "tertiary-fixed-dim": "#ffb4ac",
+                        "tertiary": "#ffb4ad",
+                        "on-surface-variant": "#d0c5b2",
+                        "surface-variant": "#38342d",
+                        "on-secondary-fixed": "#001e2b",
+                        "on-tertiary": "#690007",
+                        "on-tertiary-fixed": "#410003",
+                        "primary-fixed": "#ffe08f",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-high": "#2d2a23",
+                        "on-secondary-container": "#002e3f",
+                        "on-primary-fixed-variant": "#584400",
+                        "surface-bright": "#3d3931",
+                        "on-secondary": "#003548",
+                        "surface-dim": "#16130d",
+                        "secondary": "#75d1ff",
+                        "surface-container-low": "#1e1b15",
+                        "secondary-container": "#009cce",
+                        "outline": "#99907e",
+                        "primary-fixed-dim": "#e6c364",
+                        "on-background": "#e9e1d7",
+                        "surface-tint": "#e6c364",
+                        "outline-variant": "#4d4637",
+                        "secondary-fixed": "#c2e8ff",
+                        "on-error": "#690005",
+                        "surface": "#16130d",
+                        "error": "#ffb4ab",
+                        "error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "48px",
+                        "unit": "4px",
+                        "margin-mobile": "16px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "data-value": ["Space Mono"],
+                        "headline-lg-mobile": ["Space Grotesk"],
+                        "body-md": ["DM Sans"],
+                        "headline-md": ["Space Grotesk"],
+                        "body-lg": ["DM Sans"],
+                        "headline-lg": ["Space Grotesk"],
+                        "display-lg": ["Space Grotesk"],
+                        "data-label": ["Space Mono"]
+                    },
+                    "fontSize": {
+                        "data-value": ["14px", { "lineHeight": "1.4", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "data-label": ["14px", { "lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .scanlines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0),
+                rgba(255, 255, 255, 0) 50%,
+                rgba(0, 0, 0, 0.2) 50%,
+                rgba(0, 0, 0, 0.2)
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.15;
+        }
+        
+        .holo-card {
+            transition: all 0.3s ease;
+        }
+        
+        .holo-card:hover {
+            border-color: #c9a84c;
+            box-shadow: 0 0 15px rgba(201, 168, 76, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen relative overflow-x-hidden">
+<!-- Scanline Overlay -->
+<div class="scanlines"></div>
+<!-- Top Navigation (Hidden on Home as it's a splash/hero focused entry, but included structure if needed later) -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-background/95 backdrop-blur-md border-b border-outline-variant shadow-[0_0_15px_rgba(201,168,76,0.1)] transition-all duration-300 ease-in-out hidden md:flex">
+<div class="font-display-lg text-display-lg text-primary uppercase">HoloNet Archives</div>
+<div class="flex gap-gutter">
+<a class="font-headline-md text-headline-md tracking-widest text-primary border-b-2 border-primary pb-1" href="#">Home</a>
+<a class="font-headline-md text-headline-md tracking-widest text-on-surface-variant hover:text-primary transition-colors hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)]" href="#">Characters</a>
+<a class="font-headline-md text-headline-md tracking-widest text-on-surface-variant hover:text-primary transition-colors hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)]" href="#">Planets</a>
+<a class="font-headline-md text-headline-md tracking-widest text-on-surface-variant hover:text-primary transition-colors hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)]" href="#">Species</a>
+</div>
+<div class="flex gap-4 text-primary">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)]">account_circle</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)]">settings</span>
+</div>
+</nav>
+<!-- Mobile Top Bar Structure (Simple) -->
+<div class="md:hidden fixed top-0 w-full h-16 bg-background/95 backdrop-blur-md border-b border-outline-variant z-50 flex items-center justify-between px-margin-mobile">
+<div class="font-headline-lg-mobile text-headline-lg-mobile text-primary uppercase">HoloNet</div>
+<span class="material-symbols-outlined text-primary">menu</span>
+</div>
+<main class="w-full">
+<!-- Hero Section -->
+<section class="relative w-full h-screen flex flex-col items-center justify-center overflow-hidden pt-16 md:pt-0">
+<!-- Shader Background -->
+<div class="absolute inset-0 w-full h-full z-0 opacity-40">
+<!-- STITCH_SHADER_START:ANIMATION_2 class="absolute inset-0 w-full h-full" -->
+<div class="absolute inset-0 w-full h-full" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_2" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_2');
+
+  // Sync the WebGL drawing-buffer size with the CSS-driven layout size.
+  // This fires on initial layout and whenever the element is resized.
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
+varying vec2 v_texCoord;
+void main() {
+  v_texCoord = a_position * 0.5 + 0.5;
+  gl_Position = vec4(a_position, 0.0, 1.0);
+}`;
+  const fs = `precision highp float;
+varying vec2 v_texCoord;
+uniform float u_time;
+uniform vec2 u_resolution;
+
+float random(vec2 st) {
+    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+}
+
+void main() {
+    vec2 uv = v_texCoord;
+    vec3 color = vec3(0.039, 0.039, 0.059); // Background #0a0a0f
+
+    // Starfield
+    vec2 star_uv = uv * 50.0;
+    vec2 ipos = floor(star_uv);
+    if (random(ipos) > 0.98) {
+        float blink = 0.5 + 0.5 * sin(u_time * 2.0 + random(ipos) * 10.0);
+        color += vec3(0.8, 0.8, 1.0) * blink * random(ipos + 1.0);
+    }
+
+    // Scanning line effect
+    float scanline = sin(uv.y * 800.0) * 0.04;
+    color -= scanline;
+
+    // Vignette
+    float vignette = 1.0 - length(uv - 0.5) * 0.7;
+    color *= vignette;
+
+    gl_FragColor = vec4(color, 1.0);
+}`;
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+  // u_mouse is in pixel coordinates matching u_resolution (ShaderToy convention).
+  // Shaders that need normalized coords should use: u_mouse / u_resolution.
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_2 -->
+</div>
+<div class="relative z-10 text-center flex flex-col items-center max-w-[800px] px-margin-mobile md:px-0">
+<h1 class="font-display-lg text-display-lg text-primary uppercase mb-4 drop-shadow-[0_0_12px_rgba(201,168,76,0.5)] tracking-widest">
+                    HoloNet Archives
+                </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12">
+                    The Galaxy's Most Complete Database
+                </p>
+<button class="bg-primary-container text-on-primary-container font-data-label text-data-label uppercase py-3 px-8 rounded-DEFAULT hover:bg-primary transition-colors duration-300 shadow-[0_0_15px_rgba(201,168,76,0.3)]">
+                    Explore the Galaxy
+                </button>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center animate-pulse">
+<span class="font-data-value text-data-value text-outline uppercase mb-2">Access Data</span>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</div>
+</section>
+<!-- Main Content Area -->
+<div class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-margin-desktop md:py-[96px]">
+<!-- Featured Entities -->
+<section class="mb-[96px]">
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-primary">military_tech</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">Featured Entities</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Darth Vader Card -->
+<article class="holo-card bg-surface border border-outline-variant rounded-DEFAULT overflow-hidden group cursor-pointer relative flex flex-col h-[400px]">
+<div class="absolute inset-0 opacity-20 bg-cover bg-center transition-opacity group-hover:opacity-40" data-alt="A dark, imposing sci-fi figure resembling a galactic enforcer in deep shadow, lit by stark crimson red neon lighting. The aesthetic is high-contrast minimalist futuring, with deep void backgrounds and meticulous technical details on the armor. The mood is serious, cinematic, and deeply authoritative." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHh_ydOWfC3st1kfw3mTYLBdDKAR2B8a2hLm0hLfGpENSYj9_dOiy3e0w7-lTz6C-qMzTnn0tV7oYErjSQd32v9wjwcUx7zHmEgURMa7bQ376Xm_0lY9qIQeAYdTBc792fzg4Y_NL-svVJWs42g9a-DTU7GmTlTlnTLx94j1k976Oq1hh5PA2RLtbUSFvyWOuygvnoCyh32lWYRShqCHpky29CA5b7AGpqunLcG9sskOoHPrEn3O0CXEn-vKYWcRFl0YUusxUcylU');"></div>
+<div class="relative z-10 p-6 flex flex-col h-full bg-gradient-to-t from-background via-background/80 to-transparent">
+<div class="flex justify-between items-start mb-auto">
+<span class="font-data-label text-data-label text-error border border-error px-2 py-1 uppercase tracking-widest bg-error-container/20 backdrop-blur-sm">Sith / Dark</span>
+<span class="material-symbols-outlined text-error text-2xl">swords</span>
+</div>
+<div class="mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Darth Vader</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Supreme Commander of the Imperial Fleet and dark enforcer of the Galactic Empire.</p>
+<div class="w-full h-px bg-outline-variant my-4 group-hover:bg-primary transition-colors"></div>
+<div class="flex items-center justify-between text-outline text-sm">
+<span class="font-data-value">ID: D-V-001</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Luke Skywalker Card -->
+<article class="holo-card bg-surface border border-outline-variant rounded-DEFAULT overflow-hidden group cursor-pointer relative flex flex-col h-[400px]">
+<div class="absolute inset-0 opacity-20 bg-cover bg-center transition-opacity group-hover:opacity-40" data-alt="A heroic sci-fi figure silhouetted against a binary sunset on a desert planet. The scene is lit by soft, glowing light blue and warm gold tones, creating a glassmorphism holographic effect. The high-contrast minimalist style emphasizes the vastness of the galaxy and the intellectual journey of discovery." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCBsGAfr9wDndWpIel47TS6IUfA6sS8sYMk6YrPO43rvAa7wC8Bcm_1logf5AKJdTE93EQDtiqewdo0Q28BHGw9-WtnzouiTpi1aAt6SLUC-2PqwhpRzy9capQ0JNOXYlJxw80z9q6a3bsbXEUYTFzz5ezXJxy5lDv2ZYw4Bf8kPBevmHLmDK2i_tvzLmEoXsB8VdzumWDnMPxAYuJe51Fk96m4B8FViP2JfnryXycHr4Ck8UMkj8y2W2hso6n1gRWxek5QT58jVJk');"></div>
+<div class="relative z-10 p-6 flex flex-col h-full bg-gradient-to-t from-background via-background/80 to-transparent">
+<div class="flex justify-between items-start mb-auto">
+<span class="font-data-label text-data-label text-secondary border border-secondary px-2 py-1 uppercase tracking-widest bg-secondary-container/20 backdrop-blur-sm">Jedi / Light</span>
+<span class="material-symbols-outlined text-secondary text-2xl">swords</span>
+</div>
+<div class="mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Luke Skywalker</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Legendary Jedi Knight who defeated the Galactic Empire and sought to rebuild the Order.</p>
+<div class="w-full h-px bg-outline-variant my-4 group-hover:bg-primary transition-colors"></div>
+<div class="flex items-center justify-between text-outline text-sm">
+<span class="font-data-value">ID: L-S-001</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Tatooine Card -->
+<article class="holo-card bg-surface border border-outline-variant rounded-DEFAULT overflow-hidden group cursor-pointer relative flex flex-col h-[400px]">
+<div class="absolute inset-0 opacity-20 bg-cover bg-center transition-opacity group-hover:opacity-40" data-alt="A sweeping, cinematic view of a harsh, arid desert planet with vast dune seas under twin suns. The color palette utilizes deep earth tones, burnt oranges, and near-void blacks for contrast. The image is rendered with high-fidelity, crisp details suitable for a technical planetary database entry." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC5nMq7rTrysCw0uHK_81QWVwYY0732qudqaYrOuY9yxO_AL3jjEsxUkfAKCwCrTCPWI0yroBdXgYCCJkLbYfzTgo7KE_XprC6yk6t54qGgUQdLosmUx84QF_jf9L56Zhr0aIwQp6bEl0RhOj9S-7koX6GeVa1PGmnd9Bb40R-JKkaQ1tpOCB1caiZxNEcAaRGAGy8MiPMPIJkCPqZsWionkQzaZ8-JXPIMd0_tKjvqz4yXlcmtcZpAKaajXDMf5dSt9Bg7vhQyjeY');"></div>
+<div class="relative z-10 p-6 flex flex-col h-full bg-gradient-to-t from-background via-background/80 to-transparent">
+<div class="flex justify-between items-start mb-auto">
+<span class="font-data-label text-data-label text-primary border border-primary px-2 py-1 uppercase tracking-widest bg-primary-container/10 backdrop-blur-sm">Planet / Outer Rim</span>
+<span class="material-symbols-outlined text-primary text-2xl">globe</span>
+</div>
+<div class="mt-auto">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Tatooine</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2">Harsh desert world orbiting binary suns in the galaxy's Outer Rim Territories.</p>
+<div class="w-full h-px bg-outline-variant my-4 group-hover:bg-primary transition-colors"></div>
+<div class="flex items-center justify-between text-outline text-sm">
+<span class="font-data-value">ID: PL-TAT-01</span>
+<span class="material-symbols-outlined text-base">arrow_forward</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+</section>
+<!-- Browse by Category -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-primary">category</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface uppercase">Browse Databanks</h2>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Tiles -->
+<a class="holo-card bg-surface-container-low border border-outline-variant rounded-DEFAULT p-6 flex flex-col items-center justify-center text-center aspect-square group" href="#">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-4 group-hover:text-primary transition-colors">person</span>
+<span class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Characters</span>
+</a>
+<a class="holo-card bg-surface-container-low border border-outline-variant rounded-DEFAULT p-6 flex flex-col items-center justify-center text-center aspect-square group" href="#">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-4 group-hover:text-primary transition-colors">public</span>
+<span class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Planets</span>
+</a>
+<a class="holo-card bg-surface-container-low border border-outline-variant rounded-DEFAULT p-6 flex flex-col items-center justify-center text-center aspect-square group" href="#">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-4 group-hover:text-primary transition-colors">cruelty_free</span>
+<span class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Species</span>
+</a>
+<a class="holo-card bg-surface-container-low border border-outline-variant rounded-DEFAULT p-6 flex flex-col items-center justify-center text-center aspect-square group" href="#">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-4 group-hover:text-primary transition-colors">security</span>
+<span class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Factions</span>
+</a>
+<a class="holo-card bg-surface-container-low border border-outline-variant rounded-DEFAULT p-6 flex flex-col items-center justify-center text-center aspect-square group" href="#">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-4 group-hover:text-primary transition-colors">flight</span>
+<span class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Vehicles</span>
+</a>
+<a class="holo-card bg-surface-container-low border border-outline-variant rounded-DEFAULT p-6 flex flex-col items-center justify-center text-center aspect-square group" href="#">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-4 group-hover:text-primary transition-colors">hardware</span>
+<span class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Weapons</span>
+</a>
+<a class="holo-card bg-surface-container-low border border-outline-variant rounded-DEFAULT p-6 flex flex-col items-center justify-center text-center aspect-square group" href="#">
+<span class="material-symbols-outlined text-4xl text-on-surface-variant mb-4 group-hover:text-primary transition-colors">history</span>
+<span class="font-headline-md text-headline-md text-on-surface group-hover:text-primary transition-colors">Eras</span>
+</a>
+<a class="holo-card bg-surface-container-low border border-outline-variant rounded-DEFAULT p-6 flex flex-col items-center justify-center text-center aspect-square group bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjA0LCAyMDQsIDIwNCwgMC4xKSIvPjwvc3ZnPg==')]" href="#">
+<span class="material-symbols-outlined text-4xl text-primary mb-4 group-hover:scale-110 transition-transform">search</span>
+<span class="font-headline-md text-headline-md text-primary">Advanced Search</span>
+</a>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-container-lowest border-t border-outline-variant mt-[96px] relative z-10">
+<div class="font-data-label text-data-label text-primary">HoloNet Archives</div>
+<div class="font-data-value text-data-value text-outline">
+            © CORUSCANT DATABANK 7927. ALL RIGHTS RESERVED.
+        </div>
+<div class="flex gap-4">
+<a class="font-data-value text-data-value text-outline hover:text-secondary transition-colors" href="#">Legal</a>
+<a class="font-data-value text-data-value text-outline hover:text-secondary transition-colors" href="#">Privacy</a>
+<a class="font-data-value text-data-value text-outline hover:text-secondary transition-colors" href="#">API Docs</a>
+<a class="font-data-value text-data-value text-outline hover:text-secondary transition-colors" href="#">Core Stats</a>
+</div>
+</footer>
+</body></html>

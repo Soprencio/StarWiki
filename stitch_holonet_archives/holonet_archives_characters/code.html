@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HoloNet Archives - Characters</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;family=Space+Grotesk:wght@300..700&amp;family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .scanlines {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0,0,0,0.2) 50%,
+                rgba(0,0,0,0.2)
+            );
+            background-size: 100% 4px;
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            opacity: 0.15;
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 15px rgba(201, 168, 76, 0.4);
+            border-color: #c9a84c;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#ffdad6",
+                    "secondary-fixed-dim": "#75d1ff",
+                    "on-primary-container": "#503d00",
+                    "on-secondary-fixed-variant": "#004d67",
+                    "tertiary-container": "#ff8a80",
+                    "background": "#16130d",
+                    "on-primary": "#3d2e00",
+                    "on-tertiary-container": "#86000c",
+                    "inverse-on-surface": "#343029",
+                    "on-tertiary-fixed-variant": "#93000e",
+                    "inverse-surface": "#e9e1d7",
+                    "surface-container-lowest": "#100e08",
+                    "on-primary-fixed": "#241a00",
+                    "surface-container-highest": "#38342d",
+                    "inverse-primary": "#755b00",
+                    "on-surface": "#e9e1d7",
+                    "surface-container": "#221f19",
+                    "primary": "#e6c364",
+                    "primary-container": "#c9a84c",
+                    "tertiary-fixed-dim": "#ffb4ac",
+                    "tertiary": "#ffb4ad",
+                    "on-surface-variant": "#d0c5b2",
+                    "surface-variant": "#38342d",
+                    "on-secondary-fixed": "#001e2b",
+                    "on-tertiary": "#690007",
+                    "on-tertiary-fixed": "#410003",
+                    "primary-fixed": "#ffe08f",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-high": "#2d2a23",
+                    "on-secondary-container": "#002e3f",
+                    "on-primary-fixed-variant": "#584400",
+                    "surface-bright": "#3d3931",
+                    "on-secondary": "#003548",
+                    "surface-dim": "#16130d",
+                    "secondary": "#75d1ff",
+                    "surface-container-low": "#1e1b15",
+                    "secondary-container": "#009cce",
+                    "outline": "#99907e",
+                    "primary-fixed-dim": "#e6c364",
+                    "on-background": "#e9e1d7",
+                    "surface-tint": "#e6c364",
+                    "outline-variant": "#4d4637",
+                    "secondary-fixed": "#c2e8ff",
+                    "on-error": "#690005",
+                    "surface": "#16130d",
+                    "error": "#ffb4ab",
+                    "error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-desktop": "48px",
+                    "unit": "4px",
+                    "margin-mobile": "16px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "data-value": [
+                            "Space Mono"
+                    ],
+                    "headline-lg-mobile": [
+                            "Space Grotesk"
+                    ],
+                    "body-md": [
+                            "DM Sans"
+                    ],
+                    "headline-md": [
+                            "Space Grotesk"
+                    ],
+                    "body-lg": [
+                            "DM Sans"
+                    ],
+                    "headline-lg": [
+                            "Space Grotesk"
+                    ],
+                    "display-lg": [
+                            "Space Grotesk"
+                    ],
+                    "data-label": [
+                            "Space Mono"
+                    ]
+            },
+            "fontSize": {
+                    "data-value": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "data-label": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "letterSpacing": "0.02em",
+                                    "fontWeight": "500"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen antialiased selection:bg-primary selection:text-on-primary">
+<div class="scanlines"></div>
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-background/95 backdrop-blur-md border-b border-outline-variant shadow-[0_0_15px_rgba(201,168,76,0.1)]">
+<div class="flex items-center gap-8">
+<span class="font-display-lg text-display-lg text-primary uppercase">HoloNet Archives</span>
+<div class="hidden md:flex gap-6 items-center h-full">
+<a class="font-headline-md text-headline-md tracking-widest text-primary border-b-2 border-primary pb-1 duration-300 ease-in-out" href="#">Characters</a>
+<a class="font-headline-md text-headline-md tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)]" href="#">Planets</a>
+<a class="font-headline-md text-headline-md tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)]" href="#">Species</a>
+<a class="font-headline-md text-headline-md tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)]" href="#">Factions</a>
+<a class="font-headline-md text-headline-md tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)]" href="#">Vehicles</a>
+<a class="font-headline-md text-headline-md tracking-widest text-on-surface-variant hover:text-primary transition-colors duration-300 ease-in-out hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)]" href="#">Weapons</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<input class="bg-background border-b border-outline-variant text-on-surface font-data-value text-data-value px-2 py-1 focus:outline-none focus:border-secondary focus:ring-0 w-64 transition-colors" placeholder="Search Archives..." type="text"/>
+<span class="material-symbols-outlined absolute right-2 top-1.5 text-primary text-sm" style="font-variation-settings: 'FILL' 0;">my_location</span>
+</div>
+<button class="text-primary hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+<button class="text-primary hover:text-primary-fixed transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+</button>
+</div>
+</nav>
+<!-- SideNavBar -->
+<aside class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-64px)] z-40 flex-col w-64 bg-surface-container-low border-r border-outline-variant">
+<div class="p-6 border-b border-outline-variant">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded bg-surface-variant flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">terminal</span>
+</div>
+<div>
+<div class="font-headline-md text-headline-md text-secondary">FILTER_ARRAY</div>
+<div class="font-data-label text-data-label text-on-surface-variant">Terminal ID: 77-BKH</div>
+</div>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto py-4 flex flex-col gap-1">
+<button class="flex items-center gap-3 px-6 py-3 bg-primary-fixed-variant/20 text-primary border-l-4 border-primary font-data-label text-data-label uppercase active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">security</span>
+                Affiliation
+            </button>
+<button class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant/50 hover:bg-surface-container-high transition-all font-data-label text-data-label uppercase active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">history</span>
+                Era
+            </button>
+<button class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant/50 hover:bg-surface-container-high transition-all font-data-label text-data-label uppercase active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">category</span>
+                Category
+            </button>
+<button class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant/50 hover:bg-surface-container-high transition-all font-data-label text-data-label uppercase active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">public</span>
+                Sector
+            </button>
+<button class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant/50 hover:bg-surface-container-high transition-all font-data-label text-data-label uppercase active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">timeline</span>
+                Timeline
+            </button>
+<button class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant/50 hover:bg-surface-container-high transition-all font-data-label text-data-label uppercase active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">verified_user</span>
+                Clearance
+            </button>
+<button class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant/50 hover:bg-surface-container-high transition-all font-data-label text-data-label uppercase active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">inventory_2</span>
+                Archives
+            </button>
+</div>
+<div class="p-6">
+<button class="w-full bg-primary text-on-primary font-headline-md text-headline-md py-2 rounded uppercase tracking-wide hover:bg-primary-fixed transition-colors">Apply Matrix</button>
+</div>
+<div class="border-t border-outline-variant p-4 flex flex-col gap-1">
+<button class="flex items-center gap-3 px-2 py-2 text-on-surface-variant hover:text-primary transition-colors font-data-label text-data-label uppercase">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">terminal</span>
+                Diagnostics
+            </button>
+<button class="flex items-center gap-3 px-2 py-2 text-on-surface-variant hover:text-primary transition-colors font-data-label text-data-label uppercase">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">contact_support</span>
+                Help
+            </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="pt-[88px] md:pl-[288px] px-gutter pb-margin-desktop min-h-screen">
+<header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-outline-variant pb-6">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary uppercase tracking-widest">ARCHIVE: CHARACTERS</h1>
+<p class="font-data-label text-data-label text-on-surface-variant mt-2 uppercase tracking-widest">Retrieving High-Priority Targets...</p>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-4 py-1.5 rounded-full border border-primary text-primary font-data-label text-data-label uppercase bg-primary/10 whitespace-nowrap">All Profiles</button>
+<button class="px-4 py-1.5 rounded-full border border-outline text-outline font-data-label text-data-label uppercase hover:border-primary hover:text-primary transition-colors whitespace-nowrap">Rebel Alliance</button>
+<button class="px-4 py-1.5 rounded-full border border-outline text-outline font-data-label text-data-label uppercase hover:border-primary hover:text-primary transition-colors whitespace-nowrap">Galactic Empire</button>
+<button class="px-4 py-1.5 rounded-full border border-outline text-outline font-data-label text-data-label uppercase hover:border-primary hover:text-primary transition-colors whitespace-nowrap">Jedi Order</button>
+</div>
+</header>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<article class="bg-surface border border-outline-variant rounded p-4 relative glow-hover transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="absolute top-4 right-4 z-10">
+<span class="px-2 py-1 border border-secondary text-secondary font-data-value text-[10px] uppercase rounded backdrop-blur-sm bg-background/50">Jedi / Light</span>
+</div>
+<div class="h-48 w-full bg-surface-container-high border-b border-outline-variant mb-4 relative overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-6xl text-outline-variant group-hover:text-primary/50 transition-colors" style="font-variation-settings: 'FILL' 0;">person</span>
+</div>
+<div class="flex-1">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-1">Luke Skywalker</h2>
+<p class="font-data-label text-data-label text-on-surface-variant mb-4 uppercase">ID: 1138-LS</p>
+<div class="space-y-2 font-data-value text-data-value text-sm">
+<div class="flex justify-between border-b border-outline-variant/50 pb-1">
+<span class="text-outline">Species</span>
+<span class="text-on-surface">Human</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/50 pb-1">
+<span class="text-outline">Homeworld</span>
+<span class="text-on-surface">Tatooine</span>
+</div>
+<div class="flex justify-between pb-1">
+<span class="text-outline">Status</span>
+<span class="text-secondary">Active</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2 -->
+<article class="bg-surface border border-outline-variant rounded p-4 relative glow-hover transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="absolute top-4 right-4 z-10">
+<span class="px-2 py-1 border border-error text-error font-data-value text-[10px] uppercase rounded backdrop-blur-sm bg-background/50">Sith / Dark</span>
+</div>
+<div class="h-48 w-full bg-surface-container-high border-b border-outline-variant mb-4 relative overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-error/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-6xl text-outline-variant group-hover:text-error/50 transition-colors" style="font-variation-settings: 'FILL' 0;">person</span>
+</div>
+<div class="flex-1">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-1">Darth Vader</h2>
+<p class="font-data-label text-data-label text-on-surface-variant mb-4 uppercase">ID: 501-DV</p>
+<div class="space-y-2 font-data-value text-data-value text-sm">
+<div class="flex justify-between border-b border-outline-variant/50 pb-1">
+<span class="text-outline">Species</span>
+<span class="text-on-surface">Cyborg/Human</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/50 pb-1">
+<span class="text-outline">Homeworld</span>
+<span class="text-on-surface">Tatooine</span>
+</div>
+<div class="flex justify-between pb-1">
+<span class="text-outline">Status</span>
+<span class="text-error">Active</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 3 -->
+<article class="bg-surface border border-outline-variant rounded p-4 relative glow-hover transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="absolute top-4 right-4 z-10">
+<span class="px-2 py-1 border border-secondary text-secondary font-data-value text-[10px] uppercase rounded backdrop-blur-sm bg-background/50">Rebellion</span>
+</div>
+<div class="h-48 w-full bg-surface-container-high border-b border-outline-variant mb-4 relative overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-6xl text-outline-variant group-hover:text-primary/50 transition-colors" style="font-variation-settings: 'FILL' 0;">person</span>
+</div>
+<div class="flex-1">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-1">Leia Organa</h2>
+<p class="font-data-label text-data-label text-on-surface-variant mb-4 uppercase">ID: 001-LO</p>
+<div class="space-y-2 font-data-value text-data-value text-sm">
+<div class="flex justify-between border-b border-outline-variant/50 pb-1">
+<span class="text-outline">Species</span>
+<span class="text-on-surface">Human</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/50 pb-1">
+<span class="text-outline">Homeworld</span>
+<span class="text-on-surface">Alderaan</span>
+</div>
+<div class="flex justify-between pb-1">
+<span class="text-outline">Status</span>
+<span class="text-secondary">Active</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 4 -->
+<article class="bg-surface border border-outline-variant rounded p-4 relative glow-hover transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="absolute top-4 right-4 z-10">
+<span class="px-2 py-1 border border-outline text-outline font-data-value text-[10px] uppercase rounded backdrop-blur-sm bg-background/50">Smuggler</span>
+</div>
+<div class="h-48 w-full bg-surface-container-high border-b border-outline-variant mb-4 relative overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-6xl text-outline-variant group-hover:text-primary/50 transition-colors" style="font-variation-settings: 'FILL' 0;">person</span>
+</div>
+<div class="flex-1">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-1">Han Solo</h2>
+<p class="font-data-label text-data-label text-on-surface-variant mb-4 uppercase">ID: 777-HS</p>
+<div class="space-y-2 font-data-value text-data-value text-sm">
+<div class="flex justify-between border-b border-outline-variant/50 pb-1">
+<span class="text-outline">Species</span>
+<span class="text-on-surface">Human</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/50 pb-1">
+<span class="text-outline">Homeworld</span>
+<span class="text-on-surface">Corellia</span>
+</div>
+<div class="flex justify-between pb-1">
+<span class="text-outline">Status</span>
+<span class="text-outline">Unknown</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 5 -->
+<article class="bg-surface border border-outline-variant rounded p-4 relative glow-hover transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="absolute top-4 right-4 z-10">
+<span class="px-2 py-1 border border-secondary text-secondary font-data-value text-[10px] uppercase rounded backdrop-blur-sm bg-background/50">Jedi / Light</span>
+</div>
+<div class="h-48 w-full bg-surface-container-high border-b border-outline-variant mb-4 relative overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-6xl text-outline-variant group-hover:text-primary/50 transition-colors" style="font-variation-settings: 'FILL' 0;">person</span>
+</div>
+<div class="flex-1">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-1">Obi-Wan Kenobi</h2>
+<p class="font-data-label text-data-label text-on-surface-variant mb-4 uppercase">ID: 032-OK</p>
+<div class="space-y-2 font-data-value text-data-value text-sm">
+<div class="flex justify-between border-b border-outline-variant/50 pb-1">
+<span class="text-outline">Species</span>
+<span class="text-on-surface">Human</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/50 pb-1">
+<span class="text-outline">Homeworld</span>
+<span class="text-on-surface">Stewjon</span>
+</div>
+<div class="flex justify-between pb-1">
+<span class="text-outline">Status</span>
+<span class="text-outline">Archived</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 6 -->
+<article class="bg-surface border border-outline-variant rounded p-4 relative glow-hover transition-all duration-300 group cursor-pointer flex flex-col h-full">
+<div class="absolute top-4 right-4 z-10">
+<span class="px-2 py-1 border border-secondary text-secondary font-data-value text-[10px] uppercase rounded backdrop-blur-sm bg-background/50">Jedi / Light</span>
+</div>
+<div class="h-48 w-full bg-surface-container-high border-b border-outline-variant mb-4 relative overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<span class="material-symbols-outlined text-6xl text-outline-variant group-hover:text-primary/50 transition-colors" style="font-variation-settings: 'FILL' 0;">person</span>
+</div>
+<div class="flex-1">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-1">Ahsoka Tano</h2>
+<p class="font-data-label text-data-label text-on-surface-variant mb-4 uppercase">ID: 332-AT</p>
+<div class="space-y-2 font-data-value text-data-value text-sm">
+<div class="flex justify-between border-b border-outline-variant/50 pb-1">
+<span class="text-outline">Species</span>
+<span class="text-on-surface">Togruta</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant/50 pb-1">
+<span class="text-outline">Homeworld</span>
+<span class="text-on-surface">Shili</span>
+</div>
+<div class="flex justify-between pb-1">
+<span class="text-outline">Status</span>
+<span class="text-secondary">Active</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-container-lowest border-t border-outline-variant mt-auto relative z-50 md:pl-[288px]">
+<div class="font-data-label text-data-label text-primary">
+<span class="material-symbols-outlined inline-block align-middle mr-2" style="font-variation-settings: 'FILL' 0;">database</span>
+            HoloNet Archives
+        </div>
+<div class="font-data-value text-data-value text-outline">
+            © CORUSCANT DATABANK 7927. ALL RIGHTS RESERVED.
+        </div>
+<div class="flex gap-6">
+<a class="font-data-value text-data-value text-outline hover:text-secondary transition-colors" href="#">Legal</a>
+<a class="font-data-value text-data-value text-outline hover:text-secondary transition-colors" href="#">Privacy</a>
+<a class="font-data-value text-data-value text-outline hover:text-secondary transition-colors" href="#">API Docs</a>
+<a class="font-data-value text-data-value text-outline hover:text-secondary transition-colors" href="#">Core Stats</a>
+</div>
+</footer>
+</body></html>

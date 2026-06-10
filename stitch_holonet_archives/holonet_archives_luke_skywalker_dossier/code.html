@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HoloNet Archives - Luke Skywalker</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Scanline Overlay */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 2;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
+        /* Glitch text effect for hover */
+        .glitch-hover:hover {
+            animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
+            text-shadow: 2px 0 #ffdad6, -2px 0 #75d1ff;
+        }
+
+        @keyframes glitch-skew {
+            0% { transform: skew(0deg); }
+            20% { transform: skew(-5deg); }
+            40% { transform: skew(5deg); }
+            60% { transform: skew(-2deg); }
+            80% { transform: skew(2deg); }
+            100% { transform: skew(0deg); }
+        }
+        
+        .glow-border {
+            box-shadow: 0 0 10px rgba(201,168,76,0.1);
+        }
+        .glow-border:hover {
+            box-shadow: 0 0 15px rgba(201,168,76,0.3);
+            border-color: #c9a84c;
+        }
+        
+        .text-glow {
+            text-shadow: 0 0 8px rgba(201,168,76,0.4);
+        }
+
+        /* Custom Scrollbar for Related Entities */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#ffdad6",
+                      "secondary-fixed-dim": "#75d1ff",
+                      "on-primary-container": "#503d00",
+                      "on-secondary-fixed-variant": "#004d67",
+                      "tertiary-container": "#ff8a80",
+                      "background": "#16130d",
+                      "on-primary": "#3d2e00",
+                      "on-tertiary-container": "#86000c",
+                      "inverse-on-surface": "#343029",
+                      "on-tertiary-fixed-variant": "#93000e",
+                      "inverse-surface": "#e9e1d7",
+                      "surface-container-lowest": "#100e08",
+                      "on-primary-fixed": "#241a00",
+                      "surface-container-highest": "#38342d",
+                      "inverse-primary": "#755b00",
+                      "on-surface": "#e9e1d7",
+                      "surface-container": "#221f19",
+                      "primary": "#e6c364",
+                      "primary-container": "#c9a84c",
+                      "tertiary-fixed-dim": "#ffb4ac",
+                      "tertiary": "#ffb4ad",
+                      "on-surface-variant": "#d0c5b2",
+                      "surface-variant": "#38342d",
+                      "on-secondary-fixed": "#001e2b",
+                      "on-tertiary": "#690007",
+                      "on-tertiary-fixed": "#410003",
+                      "primary-fixed": "#ffe08f",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-high": "#2d2a23",
+                      "on-secondary-container": "#002e3f",
+                      "on-primary-fixed-variant": "#584400",
+                      "surface-bright": "#3d3931",
+                      "on-secondary": "#003548",
+                      "surface-dim": "#16130d",
+                      "secondary": "#75d1ff",
+                      "surface-container-low": "#1e1b15",
+                      "secondary-container": "#009cce",
+                      "outline": "#99907e",
+                      "primary-fixed-dim": "#e6c364",
+                      "on-background": "#e9e1d7",
+                      "surface-tint": "#e6c364",
+                      "outline-variant": "#4d4637",
+                      "secondary-fixed": "#c2e8ff",
+                      "on-error": "#690005",
+                      "surface": "#16130d",
+                      "error": "#ffb4ab",
+                      "error-container": "#93000a"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin-desktop": "48px",
+                      "unit": "4px",
+                      "margin-mobile": "16px",
+                      "container-max": "1440px"
+              },
+              "fontFamily": {
+                      "data-value": [
+                              "Space Mono"
+                      ],
+                      "headline-lg-mobile": [
+                              "Space Grotesk"
+                      ],
+                      "body-md": [
+                              "DM Sans"
+                      ],
+                      "headline-md": [
+                              "Space Grotesk"
+                      ],
+                      "body-lg": [
+                              "DM Sans"
+                      ],
+                      "headline-lg": [
+                              "Space Grotesk"
+                      ],
+                      "display-lg": [
+                              "Space Grotesk"
+                      ],
+                      "data-label": [
+                              "Space Mono"
+                      ]
+              },
+              "fontSize": {
+                      "data-value": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "data-label": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-background/95 backdrop-blur-md border-b border-outline-variant shadow-[0_0_15px_rgba(201,168,76,0.1)]">
+<div class="flex items-center gap-8">
+<div class="font-display-lg text-display-lg text-primary uppercase text-glow">HoloNet Archives</div>
+<nav class="hidden md:flex gap-6">
+<a class="font-headline-md text-headline-md tracking-widest text-primary border-b-2 border-primary pb-1 duration-300 ease-in-out" href="#">Characters</a>
+<a class="font-headline-md text-headline-md tracking-widest text-on-surface-variant hover:text-primary transition-colors hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)] duration-300 ease-in-out" href="#">Planets</a>
+<a class="font-headline-md text-headline-md tracking-widest text-on-surface-variant hover:text-primary transition-colors hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)] duration-300 ease-in-out" href="#">Species</a>
+<a class="font-headline-md text-headline-md tracking-widest text-on-surface-variant hover:text-primary transition-colors hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)] duration-300 ease-in-out" href="#">Factions</a>
+<a class="font-headline-md text-headline-md tracking-widest text-on-surface-variant hover:text-primary transition-colors hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)] duration-300 ease-in-out" href="#">Vehicles</a>
+<a class="font-headline-md text-headline-md tracking-widest text-on-surface-variant hover:text-primary transition-colors hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)] duration-300 ease-in-out" href="#">Weapons</a>
+</nav>
+</div>
+<div class="flex items-center gap-4 text-primary">
+<span class="material-symbols-outlined hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)] cursor-pointer transition-all">account_circle</span>
+<span class="material-symbols-outlined hover:text-primary-fixed hover:drop-shadow-[0_0_8px_rgba(201,168,76,0.4)] cursor-pointer transition-all">settings</span>
+</div>
+</header>
+<!-- Side Navigation -->
+<aside class="hidden md:flex fixed left-0 top-16 h-[calc(100vh-64px)] z-40 flex-col bg-surface-container-low w-64 border-r border-outline-variant">
+<div class="p-6 border-b border-outline-variant">
+<div class="font-headline-md text-headline-md text-secondary mb-2">FILTER_ARRAY</div>
+<div class="font-data-label text-data-label text-outline uppercase">Terminal ID: 77-BKH</div>
+</div>
+<nav class="flex-1 overflow-y-auto py-4 hide-scrollbar">
+<a class="flex items-center gap-3 px-6 py-3 font-data-label text-data-label uppercase bg-primary-fixed-variant/20 text-primary border-l-4 border-primary active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">security</span>
+                Affiliation
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-data-label text-data-label uppercase text-on-surface-variant hover:bg-surface-variant/50 hover:bg-surface-container-high transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">history</span>
+                Era
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-data-label text-data-label uppercase text-on-surface-variant hover:bg-surface-variant/50 hover:bg-surface-container-high transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">category</span>
+                Category
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-data-label text-data-label uppercase text-on-surface-variant hover:bg-surface-variant/50 hover:bg-surface-container-high transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">public</span>
+                Sector
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-data-label text-data-label uppercase text-on-surface-variant hover:bg-surface-variant/50 hover:bg-surface-container-high transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">timeline</span>
+                Timeline
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-data-label text-data-label uppercase text-on-surface-variant hover:bg-surface-variant/50 hover:bg-surface-container-high transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+                Clearance
+            </a>
+<a class="flex items-center gap-3 px-6 py-3 font-data-label text-data-label uppercase text-on-surface-variant hover:bg-surface-variant/50 hover:bg-surface-container-high transition-all active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+                Archives
+            </a>
+</nav>
+<div class="p-4 border-t border-outline-variant">
+<button class="w-full py-2 bg-primary text-on-primary font-data-label text-data-label uppercase rounded hover:bg-primary-fixed transition-colors">Apply Matrix</button>
+</div>
+<div class="mt-auto border-t border-outline-variant py-2">
+<a class="flex items-center gap-3 px-6 py-2 font-data-label text-data-label uppercase text-on-surface-variant hover:bg-surface-variant/50 transition-all" href="#">
+<span class="material-symbols-outlined text-sm">terminal</span>
+                Diagnostics
+            </a>
+<a class="flex items-center gap-3 px-6 py-2 font-data-label text-data-label uppercase text-on-surface-variant hover:bg-surface-variant/50 transition-all" href="#">
+<span class="material-symbols-outlined text-sm">contact_support</span>
+                Help
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="pt-16 md:pl-64 min-h-screen flex flex-col relative z-10 max-w-container-max mx-auto w-full">
+<!-- Hero Section -->
+<section class="relative w-full h-[614px] min-h-[400px] border-b border-outline-variant overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent z-10"></div>
+<img alt="Luke Skywalker Cinematic" class="absolute inset-0 w-full h-full object-cover object-top opacity-50 mix-blend-luminosity group-hover:opacity-70 transition-opacity duration-700" data-alt="A cinematic, high-contrast digital art portrait of a young male hero staring determinedly into a vast desert landscape. He wears simple, light-colored tunic clothing typical of a desert dweller. The lighting is dramatic, with twin suns setting in the background casting long, deep shadows. The color palette emphasizes warm golds, burnt oranges, and deep, almost black, contrasts, fitting a serious, lore-rich archive aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI8qgrcJfSjFjbMqjr8LwskIlS0mDp4HaeigE_PyQ2XitOPRMUdgZuPttMmsLVrcFxfgizKrB1rnVYCxZp0zLw5F1LHTlKicwkcTWN4yvE-86QUTQS7QmLyBgvfi4wd8nK7wOQ9QNJyN4fV-ToPqAWrGI-NXbGsWJzUE2pLR-CPZCu8yTiAtW9eHZloMOTinCHX4V0A2fxrPm6dcTjFmwUOHokqM7W_BxAqDHWa1SR-GrLt29IhkNUzc5IyLV63tb-IMyLoqoWRx4"/>
+<div class="absolute inset-0 z-20 flex flex-col justify-end p-margin-mobile md:p-margin-desktop">
+<div class="flex justify-between items-end w-full">
+<div>
+<h1 class="font-display-lg text-display-lg text-primary text-glow uppercase glitch-hover md:text-[72px] leading-none mb-2">Luke Skywalker</h1>
+<p class="font-data-value text-data-value text-secondary tracking-widest uppercase glow-text">Human • Tatooine • Rebel Alliance</p>
+</div>
+<div class="hidden md:flex flex-col items-end gap-2 text-primary/80">
+<span class="material-symbols-outlined text-6xl opacity-80" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-data-label text-data-label uppercase tracking-widest text-xs">Rebel Alliance</span>
+</div>
+</div>
+</div>
+<!-- Decorative Terminal Elements -->
+<div class="absolute top-4 right-4 z-20 font-data-label text-data-label text-outline/50 uppercase text-xs hidden md:block">
+                SYS.REQ: 89.2A // SEC: CLASSIFIED
+            </div>
+<div class="absolute bottom-4 right-4 z-20 flex gap-1 hidden md:flex">
+<div class="w-2 h-2 bg-secondary animate-pulse"></div>
+<div class="w-2 h-2 bg-primary"></div>
+<div class="w-2 h-2 bg-outline-variant"></div>
+</div>
+</section>
+<!-- Content Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter p-margin-mobile md:p-margin-desktop w-full">
+<!-- Left Column: Dossier -->
+<div class="md:col-span-4 flex flex-col gap-6">
+<!-- Stats Panel -->
+<div class="bg-surface border border-outline-variant rounded-lg p-6 glow-border transition-all duration-300">
+<div class="flex items-center gap-2 mb-4 border-b border-outline-variant pb-2">
+<span class="material-symbols-outlined text-primary text-sm">terminal</span>
+<h2 class="font-headline-md text-headline-md text-on-surface uppercase text-sm tracking-widest">Imperial Dossier</h2>
+</div>
+<div class="flex flex-col gap-3 font-data-value text-data-value">
+<div class="flex justify-between items-center py-2 border-b border-surface-variant/50 hover:bg-surface-container-high px-2 -mx-2 transition-colors">
+<span class="text-outline uppercase text-xs">Homeworld</span>
+<span class="text-secondary text-right">Tatooine</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-surface-variant/50 hover:bg-surface-container-high px-2 -mx-2 transition-colors">
+<span class="text-outline uppercase text-xs">Species</span>
+<span class="text-on-surface text-right">Human</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-surface-variant/50 hover:bg-surface-container-high px-2 -mx-2 transition-colors">
+<span class="text-outline uppercase text-xs">Height</span>
+<span class="text-on-surface text-right">1.72m</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-surface-variant/50 hover:bg-surface-container-high px-2 -mx-2 transition-colors">
+<span class="text-outline uppercase text-xs">Affiliation</span>
+<span class="text-secondary text-right">Rebellion</span>
+</div>
+<div class="flex flex-col py-2 border-b border-surface-variant/50 hover:bg-surface-container-high px-2 -mx-2 transition-colors">
+<span class="text-outline uppercase text-xs mb-1">Primary Weapon</span>
+<span class="text-on-surface flex items-center gap-2">
+<div class="w-16 h-1 bg-secondary shadow-[0_0_8px_rgba(117,209,255,0.8)] rounded-full"></div>
+                                Lightsaber
+                            </span>
+</div>
+</div>
+</div>
+<!-- Tags -->
+<div class="flex flex-wrap gap-2">
+<span class="border border-secondary text-secondary font-data-label text-data-label uppercase text-xs px-2 py-1 rounded-sm shadow-[0_0_5px_rgba(117,209,255,0.2)]">Jedi</span>
+<span class="border border-outline text-outline font-data-label text-data-label uppercase text-xs px-2 py-1 rounded-sm">Pilot</span>
+<span class="border border-outline text-outline font-data-label text-data-label uppercase text-xs px-2 py-1 rounded-sm">Commander</span>
+</div>
+</div>
+<!-- Right Column: Lore & Connections -->
+<div class="md:col-span-8 flex flex-col gap-10">
+<!-- Description -->
+<section class="border-l-2 border-primary pl-6 py-2 relative">
+<div class="absolute -left-[5px] top-0 w-2 h-2 bg-primary"></div>
+<div class="absolute -left-[5px] bottom-0 w-2 h-2 bg-primary"></div>
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4">The Last Hope</h3>
+<div class="font-body-lg text-body-lg text-on-surface-variant space-y-4 max-w-3xl">
+<p>
+                            Rising from humble beginnings as a moisture farmer on the desert planet of Tatooine, Luke Skywalker became one of the greatest Jedi the galaxy has ever known. His journey thrust him into the heart of the Galactic Civil War, leading to the pivotal destruction of the first Death Star at the Battle of Yavin.
+                        </p>
+<p>
+                            Under the tutelage of Jedi Masters Obi-Wan Kenobi and Yoda, Skywalker learned the ways of the Force, confronting his profound lineage and the dark shadow of Darth Vader. His actions ultimately led to the redemption of his father and the fall of the Emperor, though his path was fraught with tragedy and profound spiritual challenges.
+                        </p>
+</div>
+</section>
+<!-- Related Entities Scroll -->
+<section class="flex flex-col gap-4 w-full overflow-hidden">
+<div class="flex items-center justify-between border-b border-outline-variant pb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface uppercase text-sm tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm">hub</span>
+                            Cross-References
+                        </h3>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded hover:bg-surface-container-high transition-colors text-outline hover:text-primary">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center border border-outline-variant rounded hover:bg-surface-container-high transition-colors text-outline hover:text-primary">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-4 overflow-x-auto pb-4 hide-scrollbar snap-x snap-mandatory">
+<!-- Card 1 -->
+<div class="min-w-[240px] md:min-w-[280px] bg-surface border border-outline-variant rounded-lg overflow-hidden group cursor-pointer snap-start glow-border transition-all duration-300">
+<div class="h-32 bg-surface-container-high relative overflow-hidden">
+<div class="absolute inset-0 bg-secondary/10 mix-blend-overlay z-10 group-hover:bg-primary/20 transition-colors"></div>
+<img alt="Leia Organa" class="w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A portrait of a regal female leader in a futuristic, diplomatic setting. She wears elegant white attire and has a distinct, braided hairstyle. The lighting is solemn and authoritative, emphasizing a high-contrast, deep-space databank aesthetic with deep blacks and subtle metallic tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-HV1u8hls9VyDBck59sPLsUXmBweK7re3Drxdk1WuIyO5MZ9sF6_MMQnwnf7yg2k87AnFrc4ns9M_oXOAMfARL7y7kOAHLdNymClt9X6zxJtZp5pI1p0VAR56_Tucen_jfwzmmK_cYCahnwglE_XHwN20e4RnFzQUzzEG-o_aMJu4HpDinft2ECFZ2pH2D_j-fUoMq4dfXFlldW9T5RyTI87ixBWfTsWBF647GMCAfElpz2BONwScGkYIrG-_PCzde-_qmawBDV8"/>
+</div>
+<div class="p-4 border-t border-outline-variant group-hover:border-primary transition-colors">
+<div class="font-data-label text-data-label text-outline uppercase text-[10px] mb-1">Sibling / Diplomat</div>
+<div class="font-headline-md text-headline-md text-on-surface text-lg group-hover:text-primary transition-colors">Leia Organa</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="min-w-[240px] md:min-w-[280px] bg-surface border border-outline-variant rounded-lg overflow-hidden group cursor-pointer snap-start glow-border transition-all duration-300">
+<div class="h-32 bg-surface-container-high relative overflow-hidden">
+<div class="absolute inset-0 bg-secondary/10 mix-blend-overlay z-10 group-hover:bg-primary/20 transition-colors"></div>
+<img alt="Han Solo" class="w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A rugged male smuggler in a dark, industrial starship interior. He wears a vest over a light shirt, exuding a confident, roguish charm. The scene uses harsh, low-key lighting typical of a gritty sci-fi archive, with heavy shadows and a minimalist, high-contrast dark mode palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUjaODzCYZ9ibmUT4hcQqTVIOMkVV9o1_W11tqp5stvTA0MeRZbo9_B2z2CqeIJAcQi4FKJsS1qgqYYLz-1_Kg2oF8frScDtaq12WDGoPteSHcDaLKJD8heO4m-CDvr_p9cYOopE_3J1qxmvfq2R9kjM-1bYvLIm64vhaXorz7js-ZZPhZfYaPX7bcKK1e1u9ACLEbiuUtlK-muyufCbY6COpCrUHtkHjEtpwI1tBvCQb3h8pSBbAZVe3brDq2f67NzXbP8g_3zm4"/>
+</div>
+<div class="p-4 border-t border-outline-variant group-hover:border-primary transition-colors">
+<div class="font-data-label text-data-label text-outline uppercase text-[10px] mb-1">Ally / Smuggler</div>
+<div class="font-headline-md text-headline-md text-on-surface text-lg group-hover:text-primary transition-colors">Han Solo</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="min-w-[240px] md:min-w-[280px] bg-surface border border-outline-variant rounded-lg overflow-hidden group cursor-pointer snap-start glow-border transition-all duration-300">
+<div class="h-32 bg-surface-container-high relative overflow-hidden">
+<div class="absolute inset-0 bg-secondary/10 mix-blend-overlay z-10 group-hover:bg-primary/20 transition-colors"></div>
+<img alt="Yoda" class="w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="A small, ancient, green-skinned alien sitting thoughtfully in a dark, misty swamp environment. The lighting is mysterious and atmospheric, casting deep shadows that align with a minimalist, high-contrast digital databank style. The mood is wise and esoteric." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHmRWUZXsbIQuDItp0P5tSpKH2cmiqXz91oR0PjxysiG3L2TyVMTXGLsXwrdprgGb-cfzmwpFrQNAcB2jJNjU-JSX2XDIch7EG3ppZ_SVCsRWzDSu0wR-lv3qWPsJJg_UnChKiY92dbVQUj-VJKIN2YiokckBTWZ_p3hHGpBEcDiKkHrBDEA_uUvJOjhgBNTXYPi4Z77odoGwJ1eE87QZyy-QiqmFM45jCwz3Bu3LAF0n5uL4ukRb55q-IOX31VOp0g4u4xoUJwKY"/>
+</div>
+<div class="p-4 border-t border-outline-variant group-hover:border-primary transition-colors">
+<div class="font-data-label text-data-label text-outline uppercase text-[10px] mb-1">Master / Jedi</div>
+<div class="font-headline-md text-headline-md text-on-surface text-lg group-hover:text-primary transition-colors">Yoda</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-8 px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-4 bg-surface-container-lowest border-t border-outline-variant md:pl-64 z-20 relative mt-12">
+<div class="font-data-label text-data-label text-primary">© CORUSCANT DATABANK 7927. ALL RIGHTS RESERVED.</div>
+<div class="flex gap-6">
+<a class="font-data-value text-data-value text-outline hover:text-secondary transition-colors" href="#">Legal</a>
+<a class="font-data-value text-data-value text-outline hover:text-secondary transition-colors" href="#">Privacy</a>
+<a class="font-data-value text-data-value text-outline hover:text-secondary transition-colors" href="#">API Docs</a>
+<a class="font-data-value text-data-value text-outline hover:text-secondary transition-colors" href="#">Core Stats</a>
+</div>
+</footer>
+</body></html>
