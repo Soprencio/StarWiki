@@ -10,7 +10,21 @@ export const planetsConfig = {
     getBadge: (p) => p.population !== 'unknown' ? 'Habitado' : 'Deshabitado',
     filters: [
       { key: 'climate', options: ['all', 'temperate', 'arid', 'frozen', 'murky'] }
-    ]
+    ],
+    filterConfig: [
+      {
+        key: 'climate',
+        label: 'Clima',
+        multi: true,
+        options: [
+          { label: 'Templado', value: 'temperate' },
+          { label: 'Árido', value: 'arid' },
+          { label: 'Gélido', value: 'frozen' },
+          { label: 'Pantanoso', value: 'murky' }
+        ]
+      }
+    ],
+    emptyMessage: "Sector galáctico sin registros"
   },
   detail: {
     category: 'planets',

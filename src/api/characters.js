@@ -19,7 +19,20 @@ export const charactersConfig = {
     },
     filters: [
       { key: 'gender', options: ['all', 'male', 'female', 'n/a'] }
-    ]
+    ],
+    filterConfig: [
+      {
+        key: 'gender',
+        label: 'Género',
+        multi: true,
+        options: [
+          { label: 'Masculino', value: 'male' },
+          { label: 'Femenino', value: 'female' },
+          { label: 'N/A / Droide', value: 'n/a' }
+        ]
+      }
+    ],
+    emptyMessage: "No se encontraron individuos en los archivos del HoloNet"
   },
   detail: {
     category: 'people',

@@ -10,7 +10,20 @@ export const vehiclesConfig = {
     getBadge: (v) => v.vehicle_class,
     filters: [
       { key: 'vehicle_class', options: ['all', 'wheeled', 'repulsorcraft', 'walker', 'starfighter'] }
-    ]
+    ],
+    filterConfig: [
+      {
+        key: 'vehicle_class',
+        label: 'Clase de Vehículo',
+        options: [
+          { label: 'Todos', value: 'all' },
+          { label: 'Repulsor', value: 'repulsorcraft' },
+          { label: 'Caminante', value: 'walker' },
+          { label: 'Con Ruedas', value: 'wheeled' }
+        ]
+      }
+    ],
+    emptyMessage: "No hay vehículos registrados en este sector"
   },
   detail: {
     category: 'vehicles',

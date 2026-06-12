@@ -1,39 +1,55 @@
-import React, { useState, useEffect } from 'react';
-import { useFetch } from '../../hooks/useFetch';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { swapi } from '../../api/swapi';
+import { useFilters } from '../../context/FilterContext';
 import EntityCard from '../entities/EntityCard';
 import LoadingSkeleton from '../ui/LoadingSkeleton';
 import ErrorState from '../feedback/ErrorState';
 import EmptyState from '../feedback/EmptyState';
-import Pagination from '../ui/Pagination';
-import Button from '../ui/Button';
+import FilterPanel from './FilterPanel';
 import styles from './EntityListPage.module.css';
+import SEO from '../utils/SEO';
 
-/**
- * Generic Entity List Page
- * @param {Object} config - { title, subtitle, category, getImage, getTags, getBadge, filters: [{ key, options }] }
- */
 const EntityListPage = ({ config }) => {
-  const { title, subtitle, category, getImage, getTags, getBadge, filters = [] } = config;
+  const { title, subtitle, category, getImage, getTags, getBadge, filterConfig = [], emptyMessage } = config;
+  const { filters } = useFilters();
   
   const [page, setPage] = useState(1);
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [error, setError] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
-  const [activeFilters, setActiveFilters] = useState({});
   const [debouncedSearch, setDebouncedSearch] = useState('');
 
+  const observer = useRef();
+  const activeFilters = filters[category] || {};
+
+  // Handle Search Debounce
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearch(searchTerm);
-      setPage(1);
     }, 500);
     return () => clearTimeout(timer);
   }, [searchTerm]);
 
-  const fetchFn = (signal) => {
+  // Reset when search or category change (Requires new fetch)
+  useEffect(() => {
+    setPage(1);
+    setResults([]);
+    setHasMore(true);
+    setLoading(true);
+    setError(null);
+  }, [debouncedSearch, category]);
+
+  // Just reset page and results if category changes (redundant with above but safe)
+  // We don't reset when activeFilters change because filtering is local
+  // and we don't want to show the global loading skeleton.
+
+  const fetchFn = useCallback((signal, p) => {
     if (debouncedSearch) {
       return swapi.search(category, debouncedSearch, signal);
     }
-    // Mapping category to swapi methods
     const categoryToMethod = {
       people: (p, s) => swapi.getPeople(p, s),
       planets: (p, s) => swapi.getPlanets(p, s),
@@ -41,114 +57,140 @@ const EntityListPage = ({ config }) => {
       vehicles: (p, s) => swapi.getVehicles(p, s),
       species: (p, s) => swapi.getSpecies(p, s),
     };
-    return categoryToMethod[category](page, signal);
-  };
+    return categoryToMethod[category](p, signal);
+  }, [category, debouncedSearch]);
 
-  const { data, loading, error } = useFetch(fetchFn, [page, debouncedSearch, category]);
+  // Main Data Loading Effect
+  useEffect(() => {
+    const controller = new AbortController();
+    
+    const loadData = async () => {
+      try {
+        const data = await fetchFn(controller.signal, page);
+        
+        setResults(prev => {
+          if (page === 1) return data.results;
+          // Avoid duplicates by checking URL
+          const newResults = [...prev];
+          data.results.forEach(item => {
+            if (!newResults.find(r => r.url === item.url)) {
+              newResults.push(item);
+            }
+          });
+          return newResults;
+        });
 
-  const handleNextPage = () => setPage((prev) => prev + 1);
-  const handlePrevPage = () => setPage((prev) => prev - 1);
+        setHasMore(!!data.next);
+        setError(null);
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          console.error("HoloNet Fetch Error:", err);
+          setError("Error al sincronizar con la base de datos galáctica.");
+        }
+      } finally {
+        setLoading(false);
+        setLoadingMore(false);
+      }
+    };
 
-  const clearFilters = () => {
-    setSearchTerm('');
-    setActiveFilters({});
-    setPage(1);
-  };
+    loadData();
 
-  const updateFilter = (key, value) => {
-    setActiveFilters(prev => ({
-      ...prev,
-      [key]: value
-    }));
-    setPage(1);
-  };
+    return () => controller.abort();
+  }, [page, fetchFn]);
 
-  const filteredResults = data?.results?.filter((item) => {
+  // Intersection Observer for Infinite Scroll
+  const lastElementRef = useCallback(node => {
+    if (loading || loadingMore) return;
+    if (observer.current) observer.current.disconnect();
+    
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        setLoadingMore(true);
+        setPage(prev => prev + 1);
+      }
+    });
+
+    if (node) observer.current.observe(node);
+  }, [loading, loadingMore, hasMore]);
+
+  // Local Filtering
+  const filteredResults = results.filter((item) => {
     return Object.entries(activeFilters).every(([key, value]) => {
-      if (!value || value === 'all') return true;
+      if (!value || value === 'all' || (Array.isArray(value) && value.length === 0)) return true;
+      if (Array.isArray(value)) return value.includes(item[key]);
       return item[key] === value;
     });
-  }) || [];
-
-  const hasActiveFilters = searchTerm !== '' || Object.values(activeFilters).some(v => v && v !== 'all');
+  });
 
   return (
     <div className={styles.page}>
+      <SEO title={title} description={subtitle} />
       <header className={styles.header}>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.subtitle}>{subtitle}</p>
+        <div className={styles.titleRow}>
+          <div>
+            <h1 className={styles.title}>{title}</h1>
+            <p className={styles.subtitle}>{subtitle}</p>
+          </div>
+          {filterConfig.length > 0 && (
+            <FilterPanel category={category} config={filterConfig} />
+          )}
+        </div>
       </header>
 
-      <div className={styles.filters}>
-        <div className={styles.searchWrapper}>
-          <input
-            type="text"
-            className={styles.searchInput}
-            placeholder={`Buscar por nombre...`}
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-
-        {filters.map(filter => (
-          <div key={filter.key} className={styles.chipGroup}>
-            {filter.options.map((option) => (
-              <button
-                key={option}
-                className={`${styles.chip} ${activeFilters[filter.key] === option || (!activeFilters[filter.key] && option === 'all') ? styles.chipActive : ''}`}
-                onClick={() => updateFilter(filter.key, option)}
-              >
-                {option}
-              </button>
-            ))}
-          </div>
-        ))}
-
-        {hasActiveFilters && (
-          <Button variant="ghost" onClick={clearFilters}>
-            Limpiar Filtros
-          </Button>
-        )}
+      <div className={styles.searchBar}>
+        <input
+          type="text"
+          className={styles.searchInput}
+          placeholder={`Buscar ${title.toLowerCase()}...`}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
       </div>
 
-      {loading && <LoadingSkeleton variant="card" count={6} />}
+      {loading && page === 1 && (
+        <LoadingSkeleton variant="card" count={6} />
+      )}
 
-      {!loading && error && (
-        <ErrorState message={error} onRetry={() => setPage(page)} />
+      {error && !loading && (
+        <ErrorState message={error} onRetry={() => setLoading(true)} />
       )}
 
       {!loading && !error && filteredResults.length === 0 && (
-        <EmptyState message={hasActiveFilters ? "No se encontraron resultados con los criterios seleccionados." : "Los archivos parecen estar vacíos."} />
+        <EmptyState message={emptyMessage || "No se encontraron registros en este sector de la galaxia."} />
       )}
 
-      {!loading && !error && filteredResults.length > 0 && (
-        <>
-          <div className={styles.grid}>
-            {filteredResults.map((item) => {
-              const id = item.url.split('/').filter(Boolean).pop();
-              return (
-                <EntityCard
-                  key={item.url}
-                  id={id}
-                  name={item.name}
-                  image={getImage(id)}
-                  category={category === 'people' ? 'personajes' : category}
-                  tags={getTags(item)}
-                  badge={getBadge ? getBadge(item) : null}
-                />
-              );
-            })}
-          </div>
+      <div className={styles.grid}>
+        {filteredResults.map((item, index) => {
+          const id = item.url.split('/').filter(Boolean).pop();
+          const isLast = index === filteredResults.length - 1;
+          return (
+            <div key={item.url} ref={isLast ? lastElementRef : null}>
+              <EntityCard
+                id={id}
+                name={item.name}
+                image={getImage(id)}
+                category={category === 'people' ? 'personajes' : category}
+                tags={getTags(item)}
+                badge={getBadge ? getBadge(item) : null}
+              />
+            </div>
+          );
+        })}
+      </div>
 
-          {!debouncedSearch && (
-            <Pagination
-              current={page}
-              total={data.count}
-              onNext={handleNextPage}
-              onPrev={handlePrevPage}
-            />
-          )}
-        </>
+      {loadingMore && (
+        <div style={{ marginTop: '2rem' }}>
+          <LoadingSkeleton variant="card" count={3} />
+        </div>
+      )}
+
+      {!hasMore && results.length > 0 && (
+        <div className={styles.endMessage}>
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+          <span>Has explorado toda la galaxia conocida</span>
+        </div>
       )}
     </div>
   );

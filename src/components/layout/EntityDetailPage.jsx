@@ -16,6 +16,7 @@ import LoadingSkeleton from '../ui/LoadingSkeleton';
 import ErrorState from '../feedback/ErrorState';
 import StatGrid from '../ui/StatGrid';
 import styles from './EntityDetailPage.module.css';
+import SEO from '../utils/SEO';
 
 /**
  * Generic Entity Detail Page
@@ -65,7 +66,15 @@ const EntityDetailPage = ({ config }) => {
     }
   }, [entity, relatedSections]);
 
-  if (loading) return <div className={styles.container}><LoadingSkeleton variant="detail" /><LoadingSkeleton variant="card" count={3} /></div>;
+  if (loading) return (
+    <div className={styles.container} aria-busy="true" aria-live="polite">
+      <LoadingSkeleton variant="detail" />
+      <LoadingSkeleton variant="stats" />
+      <div className={styles.relationGrid}>
+        <LoadingSkeleton variant="relation" count={3} />
+      </div>
+    </div>
+  );
   if (error) return <ErrorState message={error} onRetry={() => window.location.reload()} />;
   if (!entity) return <ErrorState message="Registro no encontrado" />;
 
@@ -73,6 +82,11 @@ const EntityDetailPage = ({ config }) => {
 
   return (
     <div className={styles.container}>
+      <SEO 
+        title={getTitle(entity)} 
+        description={getSubtitle(entity, relatedData)} 
+        image={getImage(id)}
+      />
       <div className={styles.backButton}>
         <Button variant="ghost" onClick={() => navigate(backPath)}>
           ← VOLVER A {category.toUpperCase()}

@@ -1,3 +1,5 @@
+const IMAGES_URL = import.meta.env.VITE_IMAGES_URL || 'https://starwars-visualguide.com/assets/img';
+
 /**
  * Extracts the ID from a SWAPI URL (e.g., "https://swapi.dev/api/people/1/" -> "1")
  */
@@ -8,45 +10,45 @@ export const extractIdFromUrl = (url) => {
 };
 
 /**
- * Returns the character image URL from starwars-visualguide
+ * Returns the character image URL
  */
 export const getCharacterImage = (id) => {
-  return `https://starwars-visualguide.com/assets/img/characters/${id}.jpg`;
+  return `${IMAGES_URL}/characters/${id}.jpg`;
 };
 
 /**
  * Returns the planet image URL
  */
 export const getPlanetImage = (id) => {
-  return `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`;
+  return `${IMAGES_URL}/planets/${id}.jpg`;
 };
 
 /**
  * Returns the starship image URL
  */
 export const getStarshipImage = (id) => {
-  return `https://starwars-visualguide.com/assets/img/starships/${id}.jpg`;
+  return `${IMAGES_URL}/starships/${id}.jpg`;
 };
 
 /**
  * Returns the vehicle image URL
  */
 export const getVehicleImage = (id) => {
-  return `https://starwars-visualguide.com/assets/img/vehicles/${id}.jpg`;
+  return `${IMAGES_URL}/vehicles/${id}.jpg`;
 };
 
 /**
  * Returns the film image URL
  */
 export const getFilmImage = (id) => {
-  return `https://starwars-visualguide.com/assets/img/films/${id}.jpg`;
+  return `${IMAGES_URL}/films/${id}.jpg`;
 };
 
 /**
  * Returns the species image URL
  */
 export const getSpeciesImage = (id) => {
-  return `https://starwars-visualguide.com/assets/img/species/${id}.jpg`;
+  return `${IMAGES_URL}/species/${id}.jpg`;
 };
 
 /**

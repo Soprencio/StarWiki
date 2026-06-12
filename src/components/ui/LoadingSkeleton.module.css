@@ -29,6 +29,25 @@
 .detail {
   height: 400px;
   width: 100%;
+  border-radius: var(--radius-lg);
+}
+
+.stats {
+  height: 200px;
+  width: 100%;
+  margin: var(--space-xl) 0;
+}
+
+.relation {
+  height: 120px;
+  width: 100%;
+}
+
+.listItem {
+  height: 80px;
+  width: 100%;
+  margin-bottom: var(--space-md);
+  border-radius: var(--radius-md);
 }
 
 .grid {

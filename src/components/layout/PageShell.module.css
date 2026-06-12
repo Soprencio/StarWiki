@@ -4,6 +4,22 @@
   min-height: 100vh;
 }
 
+.skipLink {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--color-accent-gold);
+  color: #000;
+  padding: var(--space-md);
+  z-index: 10000;
+  transition: top 0.2s;
+  font-family: var(--font-display);
+}
+
+.skipLink:focus {
+  top: 0;
+}
+
 .mainContent {
   flex: 1;
   padding: var(--space-xl);

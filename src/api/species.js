@@ -11,7 +11,21 @@ export const speciesConfig = {
     filters: [
       { key: 'classification', options: ['all', 'mammal', 'reptile', 'amphibian', 'insectoid', 'gastropod', 'artificial'] },
       { key: 'designation', options: ['all', 'sentient', 'reptilian'] }
-    ]
+    ],
+    filterConfig: [
+      {
+        key: 'classification',
+        label: 'Clasificación',
+        options: [
+          { label: 'Todas', value: 'all' },
+          { label: 'Mamíferos', value: 'mammal' },
+          { label: 'Reptiles', value: 'reptile' },
+          { label: 'Anfibios', value: 'amphibian' },
+          { label: 'Artificial', value: 'artificial' }
+        ]
+      }
+    ],
+    emptyMessage: "No hay registros biológicos de esta categoría"
   },
   detail: {
     category: 'species',

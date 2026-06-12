@@ -43,20 +43,32 @@
   display: flex;
   align-items: center;
   margin-left: auto;
+  cursor: pointer;
 }
 
-.searchBar {
+.searchTrigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
-  padding: var(--space-sm) var(--space-md);
+  padding: 6px 12px;
   border-radius: var(--radius-sm);
-  color: var(--color-text-primary);
-  width: 200px;
-  transition: width 0.3s ease;
+  color: var(--color-text-secondary);
+  transition: all 0.2s ease;
 }
 
-.searchBar:focus {
-  outline: none;
+.searchTrigger:hover {
   border-color: var(--color-accent-gold);
-  width: 250px;
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-elevated);
+}
+
+.searchShortcut {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  background-color: var(--color-bg-elevated);
+  padding: 2px 4px;
+  border-radius: 2px;
+  border: 1px solid var(--color-border);
 }

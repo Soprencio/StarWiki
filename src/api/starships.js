@@ -10,7 +10,20 @@ export const starshipsConfig = {
     getBadge: (s) => s.starship_class,
     filters: [
       { key: 'starship_class', options: ['all', 'Starfighter', 'Deep Space Mobile Station', 'Light freighter'] }
-    ]
+    ],
+    filterConfig: [
+      {
+        key: 'starship_class',
+        label: 'Clase de Nave',
+        multi: true,
+        options: [
+          { label: 'Caza Estelar', value: 'Starfighter' },
+          { label: 'Carguero Ligero', value: 'Light freighter' },
+          { label: 'Estación Espacial', value: 'Deep Space Mobile Station' }
+        ]
+      }
+    ],
+    emptyMessage: "No hay naves en este cuadrante"
   },
   detail: {
     category: 'starships',

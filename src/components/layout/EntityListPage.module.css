@@ -4,7 +4,14 @@
 }
 
 .header {
-  margin-bottom: var(--space-xxl);
+  margin-bottom: var(--space-xl);
+}
+
+.titleRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-xl);
 }
 
 .title {
@@ -18,63 +25,26 @@
   font-size: 1rem;
 }
 
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-md);
-  background-color: var(--color-bg-surface);
-  padding: var(--space-md);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
+.searchBar {
   margin-bottom: var(--space-xl);
-}
-
-.searchWrapper {
-  flex: 1;
-  min-width: 250px;
 }
 
 .searchInput {
   width: 100%;
-  background-color: var(--color-bg-elevated);
+  background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
-  padding: var(--space-sm) var(--space-md);
+  padding: var(--space-md) var(--space-xl);
   color: var(--color-text-primary);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   font-family: var(--font-body);
+  font-size: 1rem;
+  transition: all 0.2s ease;
 }
 
 .searchInput:focus {
   outline: none;
   border-color: var(--color-accent-blue);
-}
-
-.chipGroup {
-  display: flex;
-  gap: var(--space-sm);
-}
-
-.chip {
-  padding: var(--space-xs) var(--space-md);
-  background-color: var(--color-bg-elevated);
-  border: 1px solid var(--color-border);
-  color: var(--color-text-secondary);
-  border-radius: 20px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-transform: capitalize;
-}
-
-.chip:hover {
-  border-color: var(--color-accent-blue);
-}
-
-.chipActive {
-  background-color: rgba(79, 195, 247, 0.2);
-  border-color: var(--color-accent-blue);
-  color: var(--color-accent-blue);
+  box-shadow: 0 0 10px rgba(79, 195, 247, 0.2);
 }
 
 .grid {
@@ -93,4 +63,18 @@
   .grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+.endMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xxl);
+  color: var(--color-text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  opacity: 0.6;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }

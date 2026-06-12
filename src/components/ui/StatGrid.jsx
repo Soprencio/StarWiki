@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './StatGrid.module.css';
 
-const StatGrid = ({ stats = [] }) => {
+const StatGrid = memo(({ stats = [] }) => {
   return (
     <div className={styles.grid}>
       {stats.map((stat, index) => (
@@ -13,6 +13,6 @@ const StatGrid = ({ stats = [] }) => {
       ))}
     </div>
   );
-};
+});
 
 export default StatGrid;

@@ -1,4 +1,4 @@
-const BASE_URL = 'https://swapi.py4e.com/api';
+const BASE_URL = import.meta.env.VITE_SWAPI_URL || 'https://swapi.py4e.com/api';
 
 export const ENDPOINTS = {
   PEOPLE: `${BASE_URL}/people/`,
@@ -9,12 +9,27 @@ export const ENDPOINTS = {
   FILMS: `${BASE_URL}/films/`,
 };
 
+// Simple memory cache with 5 minute TTL
+const cache = new Map();
+const TTL = 5 * 60 * 1000; // 5 minutes in ms
+
 /**
- * Base fetcher for SWAPI
+ * Base fetcher for SWAPI with caching
  */
 async function fetchFromSwapi(endpoint, options = {}) {
+  const cacheKey = endpoint;
+  const now = Date.now();
+
+  // Check cache
+  if (cache.has(cacheKey)) {
+    const cached = cache.get(cacheKey);
+    if (now - cached.timestamp < TTL) {
+      return cached.data;
+    }
+    cache.delete(cacheKey);
+  }
+
   // Ensure the endpoint has a trailing slash before the query string if missing
-  // SWAPI mirrors are very sensitive to redirects caused by missing slashes
   let url = endpoint;
   if (!url.includes('?') && !url.endsWith('/')) {
     url += '/';
@@ -24,7 +39,14 @@ async function fetchFromSwapi(endpoint, options = {}) {
   if (!response.ok) {
     throw new Error(`SWAPI request failed: ${response.statusText}`);
   }
-  return response.json();
+  
+  const data = await response.json();
+
+  // Save to cache (only if it's a GET request and not a search or something dynamic we don't want to cache long)
+  // Actually, we cache everything but we can be selective. Here we cache all successful GETs.
+  cache.set(cacheKey, { data, timestamp: now });
+
+  return data;
 }
 
 export const swapi = {
@@ -46,9 +68,6 @@ export const swapi = {
   getFilms: (signal) => fetchFromSwapi(ENDPOINTS.FILMS, { signal }),
   getFilm: (id, signal) => fetchFromSwapi(`${ENDPOINTS.FILMS}${id}/`, { signal }),
 
-  // Note: SWAPI does not have a native /factions endpoint. 
-  // This may need to be handled by a different API or custom data in the future.
-  
   search: (category, query, signal) => 
     fetchFromSwapi(`${BASE_URL}/${category}/?search=${encodeURIComponent(query)}`, { signal }),
 };
