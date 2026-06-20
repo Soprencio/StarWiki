@@ -21,6 +21,7 @@ export const useFetch = (fetchFn, dependencies = []) => {
         const result = await fetchFn(signal);
         setData(result);
       } catch (err) {
+        console.error('useFetch error:', err);
         if (err.name !== 'AbortError') {
           setError(err.message || 'Something went wrong');
         }

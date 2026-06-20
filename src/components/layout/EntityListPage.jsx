@@ -169,7 +169,7 @@ const EntityListPage = ({ config }) => {
                 id={id}
                 name={item.name}
                 image={getImage(id)}
-                category={category === 'people' ? 'personajes' : category}
+                category={category}
                 tags={getTags(item)}
                 badge={getBadge ? getBadge(item) : null}
               />

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { WEAPONS } from '../data/weapons';
 import { swapi } from '../api/swapi';
-import { getCharacterImage, extractIdFromUrl, PLACEHOLDER_IMAGE } from '../utils/helpers';
+import { getCharacterImage, extractIdFromUrl } from '../utils/helpers';
 import Button from '../components/ui/Button';
 import StatGrid from '../components/ui/StatGrid';
 import EntityCard from '../components/entities/EntityCard';

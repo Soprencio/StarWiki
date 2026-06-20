@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { FACTIONS } from '../data/factions';
 import { swapi } from '../api/swapi';
-import { 
-  extractIdFromUrl, 
-  getCharacterImage, 
-  getPlanetImage, 
-  getStarshipImage, 
-  PLACEHOLDER_IMAGE 
+import {
+  extractIdFromUrl,
+  getCharacterImage,
+  getPlanetImage,
+  getStarshipImage
 } from '../utils/helpers';
 import Button from '../components/ui/Button';
 import FactionIcon from '../components/ui/FactionIcon';
@@ -153,19 +152,31 @@ const FactionDetailPage = () => {
   );
 };
 
-const RelationCard = ({ id, title, subtitle, image, path }) => (
-  <Link to={path} className={styles.miniCard}>
-    <img 
-      src={image} 
-      alt={title} 
-      className={styles.miniImage} 
-      onError={(e) => { e.target.src = PLACEHOLDER_IMAGE; }}
-    />
-    <div className={styles.miniContent}>
-      <div className={styles.miniTitle}>{title}</div>
-      <div className={styles.miniSubtitle}>{subtitle}</div>
+const RelationCard = ({ id, title, subtitle, image, path }) => {
+  const [imgSrc, setImgSrc] = useState(image);
+
+  const CardContent = (
+    <div className={styles.miniCard}>
+      {imgSrc && (
+        <img
+          src={imgSrc}
+          alt={title}
+          className={styles.miniImage}
+          onError={(e) => setImgSrc(null)}
+        />
+      )}
+      <div className={styles.miniContent}>
+        <div className={styles.miniTitle}>{title}</div>
+        <div className={styles.miniSubtitle}>{subtitle}</div>
+      </div>
     </div>
-  </Link>
-);
+  );
+
+  if (path) {
+    return <Link to={path} style={{ textDecoration: 'none' }}>{CardContent}</Link>;
+  }
+
+  return CardContent;
+};
 
 export default FactionDetailPage;

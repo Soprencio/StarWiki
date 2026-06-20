@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSearch } from '../../context/SearchContext';
-import { extractIdFromUrl, getCharacterImage, getPlanetImage, getStarshipImage, getVehicleImage, getSpeciesImage, PLACEHOLDER_IMAGE } from '../../utils/helpers';
+import { extractIdFromUrl, getCharacterImage, getPlanetImage, getStarshipImage, getVehicleImage, getSpeciesImage } from '../../utils/helpers';
 import LoadingSkeleton from '../ui/LoadingSkeleton';
 import EmptyState from '../feedback/EmptyState';
 import styles from './GlobalSearch.module.css';
@@ -58,7 +58,20 @@ const GlobalSearch = () => {
       'vehicles': getVehicleImage,
       'species': getSpeciesImage
     };
-    return map[category] ? map[category](id) : PLACEHOLDER_IMAGE;
+    return map[category] ? map[category](id) : null;
+  };
+
+  const Thumbnail = ({ src, alt }) => {
+    const [imgSrc, setImgSrc] = useState(src);
+    if (!imgSrc) return null;
+    return (
+      <img
+        src={imgSrc}
+        alt={alt}
+        className={styles.thumbnail}
+        onError={() => setImgSrc(null)}
+      />
+    );
   };
 
   return (
@@ -98,12 +111,7 @@ const GlobalSearch = () => {
                       className={styles.resultItem}
                       onClick={() => handleResultClick(group.categoryKey, id)}
                     >
-                      <img 
-                        src={getImage(group.categoryKey, id)} 
-                        alt={item.name} 
-                        className={styles.thumbnail}
-                        onError={e => e.target.src = PLACEHOLDER_IMAGE}
-                      />
+                      <Thumbnail src={getImage(group.categoryKey, id)} alt={item.name} />
                       <div className={styles.itemInfo}>
                         <span className={styles.itemName}>{item.name}</span>
                         <span className={styles.itemType}>{catLabel.slice(0, -1)}</span>
