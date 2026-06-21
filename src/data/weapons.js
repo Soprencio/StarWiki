@@ -5,7 +5,7 @@ export const WEAPONS = [
     type: "Sable de Luz",
     affiliation: "Jedi",
     description: "El arma elegante de un Caballero Jedi para tiempos más civilizados. Su color azul simboliza la rectitud y la valentía.",
-    image: "https://starwars-visualguide.com/assets/img/placeholder.jpg",
+    image: "/assets/imagenes/armas/1.jpg",
     stats: { damage: "Extremo", range: "Cuerpo a cuerpo", weight: "~1 kg" },
     knownUsers: [1, 10, 32] // Luke, Obi-Wan, Qui-Gon
   },
@@ -15,7 +15,7 @@ export const WEAPONS = [
     type: "Sable de Luz",
     affiliation: "Sith",
     description: "Imbuido con el dolor y la ira de un practicante del lado oscuro, el cristal kyber 'sangra' para producir este tono carmesí.",
-    image: "https://starwars-visualguide.com/assets/img/placeholder.jpg",
+    image: "/assets/imagenes/armas/2.jpg",
     stats: { damage: "Extremo", range: "Cuerpo a cuerpo", weight: "~1 kg" },
     knownUsers: [4, 21, 44] // Vader, Palpatine, Maul
   },
@@ -25,7 +25,7 @@ export const WEAPONS = [
     type: "Bláster",
     affiliation: "Contrabandistas / Rebeldes",
     description: "Pesado bláster de mano conocido por su gran potencia. Favorito de Han Solo por su fiabilidad en situaciones tensas.",
-    image: "https://starwars-visualguide.com/assets/img/placeholder.jpg",
+    image: "/assets/imagenes/armas/3.webp",
     stats: { damage: "Alto", range: "Medio", weight: "1.3 kg" },
     knownUsers: [13] // Han Solo
   },
@@ -35,7 +35,7 @@ export const WEAPONS = [
     type: "Rifle",
     affiliation: "Imperio Galáctico",
     description: "Arma estándar de los Stormtroopers imperiales. Versátil y letal, aunque su precisión depende del usuario.",
-    image: "https://starwars-visualguide.com/assets/img/placeholder.jpg",
+    image: "/assets/imagenes/armas/4.webp",
     stats: { damage: "Medio", range: "Largo", weight: "2.6 kg" },
     knownUsers: [4] // Empire
   },
@@ -45,7 +45,7 @@ export const WEAPONS = [
     type: "Energía cinética",
     affiliation: "Wookiees",
     description: "Arma tradicional que dispara pernos recubiertos de plasma. Requiere la fuerza de un Wookiee para ser recargada.",
-    image: "https://starwars-visualguide.com/assets/img/placeholder.jpg",
+    image: "/assets/imagenes/armas/5.webp",
     stats: { damage: "Muy Alto", range: "Medio", weight: "8 kg" },
     knownUsers: [14] // Chewie
   },
@@ -55,7 +55,7 @@ export const WEAPONS = [
     type: "Explosivo",
     affiliation: "Varios",
     description: "Un explosivo devastador que crea una esfera de calor extremo, desintegrando todo a su paso.",
-    image: "https://starwars-visualguide.com/assets/img/placeholder.jpg",
+    image: "/assets/imagenes/armas/6.webp",
     stats: { damage: "Masivo", range: "Área", weight: "0.5 kg" },
     knownUsers: []
   },
@@ -65,7 +65,7 @@ export const WEAPONS = [
     type: "Sable de Luz",
     affiliation: "Jedi",
     description: "Asociado con los Jedi que prefieren la mediación y el estudio de la Fuerza, como el Gran Maestro Yoda.",
-    image: "https://starwars-visualguide.com/assets/img/placeholder.jpg",
+    image: "/assets/imagenes/armas/7.jpg",
     stats: { damage: "Extremo", range: "Cuerpo a cuerpo", weight: "~1 kg" },
     knownUsers: [20, 32] // Yoda, Qui-Gon
   },
@@ -75,7 +75,7 @@ export const WEAPONS = [
     type: "Sable de Luz",
     affiliation: "Jedi",
     description: "Un color extremadamente raro, utilizado por Mace Windu. Simboliza el equilibrio entre la luz y la oscuridad.",
-    image: "https://starwars-visualguide.com/assets/img/placeholder.jpg",
+    image: "/assets/imagenes/armas/8.jpg",
     stats: { damage: "Extremo", range: "Cuerpo a cuerpo", weight: "~1 kg" },
     knownUsers: [13] // Placeholder
   },
@@ -85,7 +85,7 @@ export const WEAPONS = [
     type: "Cuerpo a cuerpo",
     affiliation: "Mandalorianos",
     description: "Armas ocultas en los guanteletes mandalorianos, ideales para combates cercanos inesperados.",
-    image: "https://starwars-visualguide.com/assets/img/placeholder.jpg",
+    image: "/assets/imagenes/armas/9.webp",
     stats: { damage: "Medio", range: "Muy corto", weight: "0.2 kg" },
     knownUsers: [24, 68] // Boba, Jango
   },
@@ -95,7 +95,7 @@ export const WEAPONS = [
     type: "Rifle",
     affiliation: "Mandalorianos",
     description: "Rifle de francotirador de largo alcance que desintegra objetivos. Utilizado por Din Djarin.",
-    image: "https://starwars-visualguide.com/assets/img/placeholder.jpg",
+    image: "/assets/imagenes/armas/10.webp",
     stats: { damage: "Masivo", range: "Extremo", weight: "5 kg" },
     knownUsers: [24] // Mando
   }
