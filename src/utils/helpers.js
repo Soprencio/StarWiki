@@ -18,7 +18,11 @@ export const getCharacterImage = (id) => {
  * Returns the planet image URL
  */
 export const getPlanetImage = (id) => {
-  return `/assets/imagenes/planetas/${id}.jpg`;
+  // Planet 46 is JPG, others are WEBP
+  if (id === 46) {
+    return `/assets/imagenes/planetas/${id}.jpg`;
+  }
+  return `/assets/imagenes/planetas/${id}.webp`;
 };
 
 /**
