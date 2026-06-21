@@ -29,14 +29,14 @@ export const getPlanetImage = (id) => {
  * Returns the starship image URL
  */
 export const getStarshipImage = (id) => {
-  return `/assets/imagenes/naves/${id}.jpg`;
+  return `/assets/imagenes/naves/${id}.webp`;
 };
 
 /**
  * Returns the vehicle image URL
  */
 export const getVehicleImage = (id) => {
-  return `/assets/imagenes/vehiculos/${id}.jpg`;
+  return `/assets/imagenes/vehiculos/${id}.webp`;
 };
 
 /**
@@ -50,6 +50,6 @@ export const getFilmImage = (id) => {
  * Returns the species image URL
  */
 export const getSpeciesImage = (id) => {
-  return `/assets/imagenes/especies/${id}.jpg`;
+  return `/assets/imagenes/especies/${id}.webp`;
 };
 
