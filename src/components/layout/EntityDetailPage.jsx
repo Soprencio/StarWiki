@@ -131,10 +131,15 @@ const EntityDetailPage = ({ config }) => {
     return <ErrorState message="Registro no encontrado" />;
   }
 
-  const backPath =
-    titleToUse.toLowerCase() === 'personajes'
-      ? '/personajes'
-      : `/${titleToUse.toLowerCase()}s`;
+  const categoryPathMap = {
+    people: '/personajes',
+    planets: '/planetas',
+    starships: '/naves',
+    vehicles: '/vehiculos',
+    species: '/especies',
+    films: '/films'
+  };
+  const backPath = categoryPathMap[category] || '/';
 
   // Hero image URL
   const heroImgUrl = getImage ? getImage(extractIdFromUrl(entity.url)) : '';

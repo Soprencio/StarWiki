@@ -1,34 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import styles from './OpeningCrawl.module.css';
 
-const OpeningCrawl = ({ title, episode, text }) => {
+const OpeningCrawl = ({ text }) => {
   const [paused, setPaused] = useState(false);
-  const crawlRef = useRef(null);
-
-  const togglePause = () => {
-    setPaused(!paused);
-  };
 
   return (
-    <div className={styles.starWarsContainer}>
-      <button className={styles.pauseButton} onClick={togglePause}>
+    <div className={styles.container}>
+      <button className={styles.pause} onClick={() => setPaused(!paused)}>
         {paused ? 'REANUDAR' : 'PAUSAR'}
       </button>
 
-      <div className={`${styles.fade} ${paused ? styles.paused : ''}`} />
+      <div className={styles.overlay} />
 
-      <section className={`${styles.crawlContainer} ${paused ? styles.paused : ''}`}>
-        <div className={styles.crawlContent} ref={crawlRef}>
-          <div className={styles.title}>
-            <p>Episodio {episode}</p>
-            <h1>{title}</h1>
-          </div>
-          
-          {text.split('\r\n\r\n').map((para, i) => (
-            <p key={i}>{para}</p>
-          ))}
+      <div className={`${styles.wrapper} ${paused ? styles.pausedWrapper : ''}`}>
+        <div className={styles.content}>
+          {text}
         </div>
-      </section>
+      </div>
     </div>
   );
 };

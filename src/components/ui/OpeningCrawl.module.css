@@ -1,95 +1,72 @@
-.starWarsContainer {
-  display: flex;
-  justify-content: center;
+.container {
   position: relative;
+  width: 100%;
   height: 500px;
-  background-color: #000;
   overflow: hidden;
-  font-family: var(--font-display);
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--color-border);
+  background: #000;
+  perspective: 600px;
 }
 
-.pauseButton {
+.overlay {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  z-index: 100;
-  background: rgba(201, 168, 76, 0.2);
-  border: 1px solid var(--color-accent-gold);
-  color: var(--color-accent-gold);
-  padding: 5px 15px;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, #000, transparent);
+  pointer-events: none;
 }
 
-.fade {
-  position: relative;
-  width: 100%;
-  min-height: 60vh;
-  top: -25px;
-  background-image: linear-gradient(0deg, transparent, #000 75%);
-  z-index: 10;
-}
-
-.crawlContainer {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  height: 1000px;
-  color: var(--color-accent-gold);
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  line-height: 1.6;
-  text-align: justify;
-  perspective: 300px;
-  width: 100%;
-}
-
-.crawlContent {
-  position: relative;
-  top: 9999px;
-  transform-origin: 50% 100%;
-  animation: crawl 60s linear infinite;
+.wrapper {
+  position: absolute;
+  top: 100%; /* start just below the visible area */
+  left: 50%;
   width: 80%;
-  transform: rotateX(25deg);
+  text-align: justify;
+  transform: translateX(-50%) rotateX(25deg);
+  transform-origin: 50% 100%;
+  animation: crawl 30s linear infinite; /* slower scroll → more time to read */
 }
 
-.paused .crawlContent {
+.pausedWrapper {
   animation-play-state: paused;
 }
 
-.title {
-  text-align: center;
-  margin-bottom: 2rem;
-  text-transform: uppercase;
+.content {
+  font-size: 5rem;
+  color: #feda34; /* Star Wars yellow */
+  line-height: 1.4;
 }
 
-.title p {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+.pause {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid #feda34;
+  color: #feda34;
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  cursor: pointer;
 }
 
-.title h1 {
-  font-size: 3rem;
-  color: var(--color-accent-gold);
-}
-
+/* Animación: el texto sube y se aleja en Z (efecto de alejamiento) */
 @keyframes crawl {
   0% {
-    top: 500px;
-    transform: rotateX(25deg) translateZ(0);
+    top: 100%;
+    transform: translateX(-50%) rotateX(25deg) translateZ(0);
   }
   100% {
-    top: -6000px;
-    transform: rotateX(25deg) translateZ(-2500px);
+    top: -500%;
+    transform: translateX(-50%) rotateX(25deg) translateZ(-1000px);
   }
 }
 
+/* Reduce motion preference */
 @media (prefers-reduced-motion: reduce) {
-  .crawlContent {
+  .wrapper {
     animation: none;
     top: 0;
   }

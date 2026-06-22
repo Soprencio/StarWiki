@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { swapi } from '../api/swapi';
 import { useFetch } from '../hooks/useFetch';
@@ -22,8 +22,38 @@ const EventDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState('characters');
+  const [entityNames, setEntityNames] = useState({});
 
   const { data: film, loading, error } = useFetch((s) => swapi.getFilm(id, s), [id]);
+
+  useEffect(() => {
+    if (!film) return;
+    const urls = film[activeTab] || [];
+    if (urls.length === 0) {
+      setEntityNames({});
+      return;
+    }
+    const fetchNames = async () => {
+      const names = {};
+      await Promise.all(
+        urls.map(async (url) => {
+          try {
+            const res = await fetch(url);
+            if (res.ok) {
+              const data = await res.json();
+              names[url] = data.name || data.title || 'Desconocido';
+            } else {
+              names[url] = 'Desconocido';
+            }
+          } catch (err) {
+            names[url] = 'Desconocido';
+          }
+        })
+      );
+      setEntityNames(names);
+    };
+    fetchNames();
+  }, [film, activeTab]);
 
   if (loading) return <LoadingSkeleton variant="detail" />;
   if (error) return <ErrorState message={error} onRetry={() => window.location.reload()} />;
@@ -35,6 +65,7 @@ const EventDetailPage = () => {
         ← VOLVER A EVENTOS
       </Button>
 
+      {/* Header optional: keep episode number and title above crawl */}
       <header className={styles.header}>
         <div className={styles.episodeNumber}>EPISODIO {film.episode_id}</div>
         <h1 className={styles.title}>{film.title}</h1>
@@ -46,11 +77,7 @@ const EventDetailPage = () => {
       </header>
 
       <section className={styles.crawlSection}>
-        <OpeningCrawl 
-          title={film.title} 
-          episode={film.episode_id} 
-          text={film.opening_crawl} 
-        />
+        <OpeningCrawl text={film.opening_crawl} />
       </section>
 
       <section className={styles.relationsSection}>
@@ -71,10 +98,10 @@ const EventDetailPage = () => {
             const entityId = extractIdFromUrl(url);
             const tabConfig = TABS.find(t => t.id === activeTab);
             return (
-              <EntityCard 
+              <EntityCard
                 key={url}
                 id={entityId}
-                name="..." // En un entorno ideal haríamos fetch de los nombres, pero para el MVP usaremos placeholders o un fetch masivo
+                name={entityNames[url] || 'Desconocido'}
                 category={tabConfig.category}
                 image={tabConfig.getImage(entityId)}
               />
