@@ -79,28 +79,73 @@ const EntityDetailPage = ({ config }) => {
   const [loadingRelated, setLoadingRelated] = useState({});
 
   useEffect(() => {
-    if (entity) {
-      const requests = relatedSections.map((section) => {
-        const urls = entity[section.key];
-        if (!urls) return Promise.resolve([]);
-        const urlList = Array.isArray(urls) ? urls : [urls];
+    if (!entity) return;
+
+    // Initialize loading states
+    const initLoading = {};
+    relatedSections.forEach((sec) => {
+      initLoading[sec.key] = true;
+    });
+    setLoadingRelated(initLoading);
+
+    const abortCtrl = new AbortController();
+    const signal = abortCtrl.signal;
+
+    const getSwapiGetter = (key) => {
+      switch (key) {
+        case 'homeworld': return swapi.getPlanet;
+        case 'films': return swapi.getFilm;
+        case 'species': return swapi.getSpecie;
+        case 'vehicles': return swapi.getVehicle;
+        case 'starships': return swapi.getStarship;
+        case 'pilots': return swapi.getPerson;
+        case 'characters': return swapi.getPerson;
+        case 'residents': return swapi.getPerson;
+        default: return null;
+      }
+    };
+
+    const requests = relatedSections.map((section) => {
+      const urls = entity[section.key];
+      if (!urls) return Promise.resolve([]);
+      const urlList = Array.isArray(urls) ? urls : [urls];
+      const getter = getSwapiGetter(section.key);
+      if (!getter) {
+        // Fallback to generic fetch with abort signal
         return Promise.all(
           urlList.map((url) =>
-            fetch(url)
-              .then((res) => res.json())
-              .catch(() => null) // swallow error
+            fetch(url, { signal })
+              .then((res) => (res.ok ? res.json() : null))
+              .catch(() => null)
           )
         ).then((results) => results.filter(Boolean));
-      });
+      }
+      return Promise.all(
+        urlList.map((url) =>
+          getter(extractIdFromUrl(url), signal)
+            .then((data) => data ?? null)
+            .catch(() => null)
+        )
+      ).then((results) => results.filter(Boolean));
+    });
 
-      Promise.all(requests).then((results) => {
-        const dataToSet = {};
-        relatedSections.forEach((sec, idx) => {
-          dataToSet[sec.key] = results[idx] || [];
-        });
-        setRelatedData(dataToSet);
+    Promise.all(requests).then((results) => {
+      const dataToSet = {};
+      relatedSections.forEach((sec, idx) => {
+        dataToSet[sec.key] = results[idx] || [];
       });
-    }
+      setRelatedData(dataToSet);
+      // Set loading to false for each section
+      const stopLoading = {};
+      relatedSections.forEach((sec) => {
+        stopLoading[sec.key] = false;
+      });
+      setLoadingRelated(stopLoading);
+    });
+
+    return () => {
+      abortCtrl.abort();
+    };
   }, [entity, relatedSections]);
 
   // ----- Loading -----

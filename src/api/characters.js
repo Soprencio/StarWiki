@@ -1,4 +1,4 @@
-import { getCharacterImage, getFilmImage } from '../utils/helpers';
+import { getCharacterImage, getFilmImage, getPlanetImage, getStarshipImage, extractIdFromUrl } from '../utils/helpers';
 import { CHARACTER_FACTIONS } from '../data/characterFactions';
 import { FACTIONS } from '../data/factions';
 
@@ -55,23 +55,24 @@ export const charactersConfig = {
       {
         title: 'PLANETA NATAL',
         key: 'homeworld',
-        getEntityImage: (id) => `https://starwars-visualguide.com/assets/img/planets/${id}.jpg`,
-        getEntityPath: (id) => `/planetas/${id}`,
+        getEntityImage: (planet) => getPlanetImage(extractIdFromUrl(planet.url)),
+        getEntityPath: (planet) => `/planetas/${extractIdFromUrl(planet.url)}`,
         getEntityTitle: (p) => p.name,
         getEntitySubtitle: (p) => 'Planeta'
       },
       {
         title: 'FILMOGRAFÍA',
         key: 'films',
-        getEntityImage: (id) => getFilmImage(id),
+        getEntityImage: (film) => getFilmImage(extractIdFromUrl(film.url)),
+        getEntityPath: (film) => `/eventos/${extractIdFromUrl(film.url)}`,
         getEntityTitle: (f) => f.title,
         getEntitySubtitle: (f) => `Episodio ${f.episode_id}`
       },
       {
         title: 'NAVES ESTELARES',
         key: 'starships',
-        getEntityImage: (id) => `https://starwars-visualguide.com/assets/img/starships/${id}.jpg`,
-        getEntityPath: (id) => `/naves/${id}`,
+        getEntityImage: (ship) => getStarshipImage(extractIdFromUrl(ship.url)),
+        getEntityPath: (ship) => `/naves/${extractIdFromUrl(ship.url)}`,
         getEntityTitle: (s) => s.name,
         getEntitySubtitle: (s) => s.model
       }

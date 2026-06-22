@@ -1,4 +1,4 @@
-import { getSpeciesImage, getCharacterImage, getFilmImage, getPlanetImage } from '../utils/helpers';
+import { getSpeciesImage, getCharacterImage, getFilmImage, getPlanetImage, extractIdFromUrl } from '../utils/helpers';
 
 export const speciesConfig = {
   list: {
@@ -46,23 +46,24 @@ export const speciesConfig = {
       {
         title: 'PLANETA NATAL',
         key: 'homeworld',
-        getEntityImage: (id) => getPlanetImage(id),
-        getEntityPath: (id) => `/planetas/${id}`,
+        getEntityImage: (planet) => getPlanetImage(extractIdFromUrl(planet.url)),
+        getEntityPath: (planet) => `/planetas/${extractIdFromUrl(planet.url)}`,
         getEntityTitle: (p) => p.name,
         getEntitySubtitle: (p) => 'Planeta'
       },
       {
         title: 'MIEMBROS CONOCIDOS',
         key: 'people',
-        getEntityImage: (id) => getCharacterImage(id),
-        getEntityPath: (id) => `/personajes/${id}`,
+        getEntityImage: (person) => getCharacterImage(extractIdFromUrl(person.url)),
+        getEntityPath: (person) => `/personajes/${extractIdFromUrl(person.url)}`,
         getEntityTitle: (char) => char.name,
         getEntitySubtitle: (char) => char.gender
       },
       {
         title: 'FILMOGRAFÍA',
         key: 'films',
-        getEntityImage: (id) => getFilmImage(id),
+        getEntityImage: (film) => getFilmImage(extractIdFromUrl(film.url)),
+        getEntityPath: (film) => `/eventos/${extractIdFromUrl(film.url)}`,
         getEntityTitle: (f) => f.title,
         getEntitySubtitle: (f) => `Episodio ${f.episode_id}`
       }

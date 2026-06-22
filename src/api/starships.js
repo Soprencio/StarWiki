@@ -1,4 +1,4 @@
-import { getStarshipImage, getCharacterImage, getFilmImage } from '../utils/helpers';
+import { getStarshipImage, getCharacterImage, getFilmImage, extractIdFromUrl } from '../utils/helpers';
 
 export const starshipsConfig = {
   list: {
@@ -45,15 +45,16 @@ export const starshipsConfig = {
       {
         title: 'PILOTOS CONOCIDOS',
         key: 'pilots',
-        getEntityImage: (id) => getCharacterImage(id),
-        getEntityPath: (id) => `/personajes/${id}`,
+        getEntityImage: (pilot) => getCharacterImage(extractIdFromUrl(pilot.url)),
+        getEntityPath: (pilot) => `/personajes/${extractIdFromUrl(pilot.url)}`,
         getEntityTitle: (char) => char.name,
         getEntitySubtitle: (char) => char.gender
       },
       {
         title: 'APARICIONES EN FILMS',
         key: 'films',
-        getEntityImage: (id) => getFilmImage(id),
+        getEntityImage: (film) => getFilmImage(extractIdFromUrl(film.url)),
+        getEntityPath: (film) => `/eventos/${extractIdFromUrl(film.url)}`,
         getEntityTitle: (f) => f.title,
         getEntitySubtitle: (f) => `Episodio ${f.episode_id}`
       }

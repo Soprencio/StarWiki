@@ -1,4 +1,4 @@
-import { getPlanetImage, getCharacterImage, getFilmImage } from '../utils/helpers';
+import { getPlanetImage, getCharacterImage, getFilmImage, extractIdFromUrl } from '../utils/helpers';
 
 export const planetsConfig = {
   list: {
@@ -45,15 +45,16 @@ export const planetsConfig = {
       {
         title: 'RESIDENTES CONOCIDOS',
         key: 'residents',
-        getEntityImage: (id) => getCharacterImage(id),
-        getEntityPath: (id) => `/personajes/${id}`,
+        getEntityImage: (resident) => getCharacterImage(extractIdFromUrl(resident.url)),
+        getEntityPath: (resident) => `/personajes/${extractIdFromUrl(resident.url)}`,
         getEntityTitle: (char) => char.name,
         getEntitySubtitle: (char) => char.gender
       },
       {
         title: 'APARICIONES EN FILMS',
         key: 'films',
-        getEntityImage: (id) => getFilmImage(id),
+        getEntityImage: (film) => getFilmImage(extractIdFromUrl(film.url)),
+        getEntityPath: (film) => `/eventos/${extractIdFromUrl(film.url)}`,
         getEntityTitle: (f) => f.title,
         getEntitySubtitle: (f) => `Episodio ${f.episode_id}`
       }
